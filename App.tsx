@@ -308,7 +308,7 @@ const App: React.FC = () => {
 
             {/* GLOBAL BANNER - UNDER NAVBAR */}
             {/* GLOBAL BANNER - UNDER NAVBAR */}
-            <div className="absolute top-52 left-0 right-0 flex justify-center z-[100] pointer-events-none">
+            <div className="absolute top-40 left-0 right-0 flex justify-center z-[100] pointer-events-none">
               <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-black/80 animate-pulse">{bannerText}</span>
             </div>
 
