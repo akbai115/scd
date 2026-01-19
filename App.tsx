@@ -306,6 +306,11 @@ const App: React.FC = () => {
             {/* ARK LOGO - Always visible */}
             <ArkLogo />
 
+            {/* GLOBAL BANNER - UNDER NAVBAR */}
+            <div className="absolute top-32 left-0 right-0 flex justify-center z-[100] pointer-events-none mix-blend-difference">
+              <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-black/50 animate-pulse">{bannerText}</span>
+            </div>
+
             <div className="absolute top-0 left-0 right-0 h-48 flex items-center justify-center z-[100]">
               <nav className="flex flex-row gap-12 md:gap-24 text-[8px] font-bold tracking-[1em] uppercase pointer-events-auto items-center opacity-60 hover:opacity-100 transition-opacity duration-[1500ms]">
                 {(['YZY', 'THE_ARK', 'STILL', 'FILES'] as View[]).map((v) => (
@@ -338,7 +343,7 @@ const App: React.FC = () => {
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-black transition-all duration-[3000ms] gap-6">
                   <h2 className="times-bold text-4xl md:text-8xl tracking-[0.4em] opacity-60 uppercase blur-[0.5px]">IN A PERFECT WORLD</h2>
                   <div className="text-center">
-                    <span className="text-[11px] font-bold tracking-[1.5em] uppercase opacity-50">{bannerText}</span>
+                    <span className="text-[11px] font-bold tracking-[1.5em] uppercase opacity-50">TBA</span>
                   </div>
                 </div>
               )}
