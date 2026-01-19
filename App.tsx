@@ -307,8 +307,9 @@ const App: React.FC = () => {
             <ArkLogo />
 
             {/* GLOBAL BANNER - UNDER NAVBAR */}
-            <div className="absolute top-32 left-0 right-0 flex justify-center z-[100] pointer-events-none mix-blend-difference">
-              <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-black/50 animate-pulse">{bannerText}</span>
+            {/* GLOBAL BANNER - UNDER NAVBAR */}
+            <div className="absolute top-52 left-0 right-0 flex justify-center z-[100] pointer-events-none">
+              <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-black/80 animate-pulse">{bannerText}</span>
             </div>
 
             <div className="absolute top-0 left-0 right-0 h-48 flex items-center justify-center z-[100]">
