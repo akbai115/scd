@@ -9,22 +9,39 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
     const [isComplete, setIsComplete] = useState(false);
 
     useEffect(() => {
-        // Simulate loading progress
-        const interval = setInterval(() => {
-            setProgress(prev => {
-                if (prev >= 100) {
-                    clearInterval(interval);
-                    setIsComplete(true);
-                    setTimeout(() => {
-                        onComplete();
-                    }, 800);
-                    return 100;
-                }
-                return prev + 2;
-            });
-        }, 30);
+        const preloadAssets = async () => {
+            try {
+                // Start loading
+                const response = await fetch('/ark.wav');
+                const reader = response.body?.getReader();
+                const contentLength = +response.headers.get('Content-Length')!;
+                let receivedLength = 0;
 
-        return () => clearInterval(interval);
+                if (reader) {
+                    while (true) {
+                        const { done, value } = await reader.read();
+                        if (done) break;
+                        receivedLength += value.length;
+                        setProgress((receivedLength / contentLength) * 100);
+                    }
+                } else {
+                    // Fallback if no reader
+                    setProgress(100);
+                }
+
+                setIsComplete(true);
+                setTimeout(() => onComplete(), 800);
+
+            } catch (err) {
+                console.error("Asset load failed", err);
+                // Fallback completion
+                setProgress(100);
+                setIsComplete(true);
+                setTimeout(() => onComplete(), 800);
+            }
+        };
+
+        preloadAssets();
     }, [onComplete]);
 
     return (

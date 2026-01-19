@@ -10,11 +10,42 @@ import { Vlinkjn } from './components/Vlinkjn';
 import { ArkLogo } from './components/ArkLogo';
 import { PasswordGate } from './components/PasswordGate';
 import { LoadingScreen } from './components/LoadingScreen';
+import { FileManager } from './components/FileManager';
 
-export type View = 'YZY' | 'THE_ARK' | 'STILL' | 'ADMIN';
+export type View = 'YZY' | 'THE_ARK' | 'STILL' | 'ADMIN' | 'FILES' | 'SYSTEM_FAILURE';
 
 const App: React.FC = () => {
-  const [view, setView] = useState<View>('YZY');
+  const [view, setView] = useState<View>(() => {
+    if (typeof window === 'undefined') return 'YZY';
+    const p = window.location.pathname;
+    if (p === '/admin') return 'ADMIN';
+    if (p === '/the_ark') return 'THE_ARK';
+    if (p === '/still') return 'STILL';
+    if (p === '/files') return 'FILES';
+    if (p === '/') return 'YZY';
+    return 'SYSTEM_FAILURE';
+  });
+
+  useEffect(() => {
+    const handlePopState = () => {
+      const p = window.location.pathname;
+      if (p === '/admin') setView('ADMIN');
+      else if (p === '/the_ark') setView('THE_ARK');
+      else if (p === '/still') setView('STILL');
+      else if (p === '/files') setView('FILES');
+      else if (p === '/') setView('YZY');
+      else setView('SYSTEM_FAILURE');
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  useEffect(() => {
+    const path = view === 'YZY' ? '/' : `/${view.toLowerCase()}`;
+    if (window.location.pathname !== path) {
+      window.history.pushState({}, '', path);
+    }
+  }, [view]);
   const [isSynced, setIsSynced] = useState(true);
   const [syncProgress, setSyncProgress] = useState(1);
   const [isSyncing, setIsSyncing] = useState(false);
@@ -220,7 +251,7 @@ const App: React.FC = () => {
           </div>
         ) : (
           <>
-            <Canvas camera={{ position: [0, 0, 5], fov: 75 }} style={{ width: '100vw', height: '100vh', position: 'absolute', top: 0, left: 0 }} dpr={[1, 1.5]}>
+            <Canvas camera={{ position: [0, 0, 5], fov: 75 }} style={{ width: '100vw', height: '100vh', position: 'absolute', top: 0, left: 0 }} dpr={[1, typeof window !== 'undefined' && window.innerWidth < 768 ? 1 : 1.5]}>
               <color attach="background" args={['#EBE9E4']} />
               <ambientLight intensity={0.2} />
               <pointLight position={[0, 0, 10]} intensity={2.0} />
@@ -239,7 +270,7 @@ const App: React.FC = () => {
 
             <div className="absolute top-0 left-0 right-0 h-48 flex items-center justify-center z-[100]">
               <nav className="flex flex-row gap-12 md:gap-24 text-[8px] font-bold tracking-[1em] uppercase pointer-events-auto items-center opacity-60 hover:opacity-100 transition-opacity duration-[1500ms]">
-                {(['YZY', 'THE_ARK', 'STILL', 'ADMIN'] as View[]).map((v) => (
+                {(['YZY', 'THE_ARK', 'STILL', 'FILES'] as View[]).map((v) => (
                   <button
                     key={v}
                     onClick={(e) => { e.stopPropagation(); setView(v); setClickTrigger(t => t + 1); }}
@@ -271,7 +302,6 @@ const App: React.FC = () => {
                   <div className="text-center">
                     <span className="text-[11px] font-bold tracking-[1.5em] uppercase opacity-50">{bannerText}</span>
                   </div>
-                  <div className="absolute bottom-32 text-[8px] font-bold tracking-[4em] opacity-50 uppercase">PHYSICS_IDLE</div>
                 </div>
               )}
 
@@ -285,6 +315,22 @@ const App: React.FC = () => {
                 ) : (
                   <PasswordGate onUnlock={() => setAdminUnlocked(true)} />
                 )
+              )}
+              {view === 'FILES' && <FileManager />}
+
+              {view === 'SYSTEM_FAILURE' && (
+                <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/90 z-[3000] text-[#EBE9E4]">
+                  <h1 className="times-bold text-6xl md:text-9xl uppercase tracking-tighter text-red-600 mix-blend-difference">SYSTEM FAILURE</h1>
+                  <div className="flex flex-col items-center gap-4 mt-8">
+                    <span className="font-mono text-sm tracking-widest uppercase opacity-70">ERR_404_REALITY_NOT_FOUND</span>
+                    <button
+                      onClick={() => { setView('YZY'); window.history.pushState({}, '', '/'); }}
+                      className="px-6 py-2 border border-white/20 hover:bg-white hover:text-black transition-colors font-mono text-xs uppercase tracking-widest"
+                    >
+                      REBOOT_SYSTEM
+                    </button>
+                  </div>
+                </div>
               )}
             </div>
 

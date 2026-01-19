@@ -8,15 +8,28 @@ export const PasswordGate: React.FC<PasswordGateProps> = ({ onUnlock }) => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        if (password === 'YZY888') {
+    const [shake, setShake] = useState(false);
+
+    const checkPassword = async (input: string) => {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(input);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+        // Hash for 'YZY888'
+        if (hashHex === '7686594dc1f40a2b2832df7161e4e005333d4b55092470a2841d917648d6233a') {
             onUnlock();
         } else {
             setError(true);
-            setPassword('');
-            setTimeout(() => setError(false), 2000);
+            setShake(true);
+            setTimeout(() => setShake(false), 500);
         }
+    };
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        checkPassword(password);
     };
 
     return (
