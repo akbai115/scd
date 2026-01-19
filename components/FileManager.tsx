@@ -135,7 +135,7 @@ export const FileManager: React.FC = () => {
                             ))}
                             {currentFiles.length === 0 && (
                                 <div className="p-8 text-center opacity-30 text-[10px] tracking-widest uppercase">
-                                    [EMPTY_SECTOR]
+                                    [VOID]
                                 </div>
                             )}
                         </div>
