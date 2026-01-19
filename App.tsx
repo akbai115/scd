@@ -11,6 +11,7 @@ import { ArkLogo } from './components/ArkLogo';
 import { PasswordGate } from './components/PasswordGate';
 import { LoadingScreen } from './components/LoadingScreen';
 import { FileManager } from './components/FileManager';
+import { supabase } from './src/lib/supabase';
 
 export type View = 'YZY' | 'THE_ARK' | 'STILL' | 'ADMIN' | 'FILES' | 'SYSTEM_FAILURE';
 
@@ -60,6 +61,43 @@ const App: React.FC = () => {
   const [adminUnlocked, setAdminUnlocked] = useState(false);
   const [bannerText, setBannerText] = useState('TBA');
   const [isLoading, setIsLoading] = useState(true);
+
+  // SUPABASE REALTIME SUBSCRIPTION
+  useEffect(() => {
+    // 1. Initial fetch for latest banner
+    const fetchLatest = async () => {
+      const { data } = await supabase
+        .from('transmissions')
+        .select('*')
+        .eq('type', 'BANNER_UPDATE')
+        .order('created_at', { ascending: false })
+        .limit(1);
+
+      if (data && data[0]) {
+        setBannerText(data[0].message);
+      }
+    };
+    fetchLatest();
+
+    // 2. Realtime Subscription
+    const channel = supabase
+      .channel('public:transmissions')
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'transmissions' }, (payload) => {
+        const { message, type } = payload.new;
+
+        if (type === 'BANNER_UPDATE') {
+          setBannerText(message);
+        } else if (type === 'BROADCAST' || type === 'INJECTION') {
+          // Trigger the existing visual logic
+          onTransmissionRequest(message);
+        }
+      })
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, []);
 
   // Transmission State
   const [activeTransmission, setActiveTransmission] = useState<string | null>(null);

@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { supabase } from '../src/lib/supabase';
 import { OpticInjector } from './OpticInjector';
 
 interface AdminProps {
@@ -13,23 +14,46 @@ export const Admin: React.FC<AdminProps> = ({ onTransmit, onBannerUpdate, curren
   const [history, setHistory] = useState<string[]>(['CORE_STABLE', 'VIBRATION_ACTIVE_432HZ']);
   const [bannerText, setBannerText] = useState(currentBanner);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!message.trim()) return;
+
+    // Local echo (optional, but good for immediate feedback)
     onTransmit(message);
     setHistory(prev => [message.toUpperCase(), ...prev].slice(0, 8));
     setMessage('');
+
+    // Broadcast to Universe
+    const { error } = await supabase.from('transmissions').insert({
+      message: message,
+      type: 'BROADCAST'
+    });
+
+    if (error) console.error('Transmission failed:', error);
   };
 
-  const handleInject = (url: string, sub: boolean) => {
-    // For now just logging or maybe passing to parent if app supports image overlay later
-    console.log('Injecting:', url, sub);
-    onTransmit(`VISION_INJECTED: ${sub ? 'SUB_' : ''}${url}`);
+  const handleInject = async (url: string, sub: boolean) => {
+    const payload = `VISION_INJECTED: ${sub ? 'SUB_' : ''}${url}`;
+    onTransmit(payload);
+
+    await supabase.from('transmissions').insert({
+      message: payload,
+      type: 'INJECTION'
+    });
   };
 
-  const handleBannerUpdate = () => {
+  const handleBannerUpdate = async () => {
+    // Local update
     onBannerUpdate(bannerText);
     setHistory(prev => [`BANNER_UPDATED: ${bannerText}`, ...prev].slice(0, 8));
+
+    // Broadcast
+    const { error } = await supabase.from('transmissions').insert({
+      message: bannerText,
+      type: 'BANNER_UPDATE'
+    });
+
+    if (error) console.error('Banner sync failed:', error);
   };
 
   return (
