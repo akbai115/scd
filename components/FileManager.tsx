@@ -32,11 +32,7 @@ const fileSystem: Directory[] = [
     {
         id: 'audio',
         name: 'AUDIO_BANKS',
-        items: [
-            { id: '8', name: 'DOPPLER.WAV', size: '42MB', type: 'AUDIO', dateCreated: '04-01-2099' },
-            { id: '9', name: 'GLTCH_01.MP3', size: '5MB', type: 'AUDIO', dateCreated: '04-02-2099' },
-            { id: '10', name: 'SUB_BASS.FLAC', size: '85MB', type: 'AUDIO', dateCreated: '04-01-2099' },
-        ]
+        items: []
     },
     {
         id: 'manifestos',
@@ -54,7 +50,6 @@ export const FileManager: React.FC = () => {
 
     const currentFiles = activeDrive.items;
     const objectCount = currentFiles.length;
-    const freeSpace = "0KB";
 
     const handleFileDoubleClick = (file: FileItem) => {
         if (file.content) {
@@ -68,21 +63,14 @@ export const FileManager: React.FC = () => {
             {/* Background Noise Layer for cohesion */}
             <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.03] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
 
-            {/* Main Window Container */}
-            <div className="w-full max-w-6xl flex-1 bg-[#1a1a1a]/95 backdrop-blur-md border border-white/20 flex flex-col shadow-[20px_20px_0px_rgba(0,0,0,0.8)] relative z-10 transition-all duration-500 group">
+            {/* Main Window Container - STRIPPED BACK */}
+            <div className="w-full max-w-6xl flex-1 flex flex-col relative z-10 transition-all duration-500 group">
 
-                {/* Header - Brutalist */}
-                <div className="border-b border-white/20 bg-black p-4 flex flex-col md:flex-row md:items-end justify-between gap-4 select-none">
+                {/* Header - RAW DATA VISUALIZATION */}
+                <div className="border-b border-black p-4 flex items-end justify-between select-none">
                     <div className="flex flex-col gap-1">
-                        <span className="text-[10px] font-bold tracking-[0.5em] text-white/50 uppercase">Directory_Listing_V2</span>
-                        <h2 className="times-bold text-3xl md:text-5xl text-white tracking-tightest uppercase leading-none">FILE_MANAGER</h2>
-                    </div>
-
-                    {/* Custom Controls */}
-                    <div className="flex gap-2">
-                        <div className="h-8 w-8 border border-white/20 flex items-center justify-center hover:bg-white hover:text-black cursor-pointer transition-colors text-xs font-mono">_</div>
-                        <div className="h-8 w-8 border border-white/20 flex items-center justify-center hover:bg-white hover:text-black cursor-pointer transition-colors text-xs font-mono">□</div>
-                        <div className="h-8 w-8 bg-white/10 border border-white/20 flex items-center justify-center hover:bg-red-900 hover:text-white cursor-pointer transition-colors text-xs font-mono">X</div>
+                        <span className="text-[9px] font-bold tracking-[0.5em] opacity-40 uppercase">SYSTEM_DIRECTORY</span>
+                        <h2 className="times-bold text-4xl tracking-tightest uppercase leading-none opacity-80">INDEX</h2>
                     </div>
                 </div>
 
@@ -90,110 +78,94 @@ export const FileManager: React.FC = () => {
                 <div className="flex-1 flex flex-col md:flex-row overflow-hidden relative">
 
                     {/* Sidebar / Drives */}
-                    <div className="w-full md:w-64 border-b md:border-b-0 md:border-r border-white/10 flex flex-col bg-black/20">
-                        <div className="p-4 border-b border-white/10">
-                            <span className="text-[9px] font-bold tracking-widest text-white/40">MOUNTED_DRIVES</span>
+                    <div className="w-full md:w-64 border-b md:border-b-0 md:border-r border-black/10 flex flex-col">
+                        <div className="p-4 border-b border-black/5">
+                            <span className="text-[9px] font-bold tracking-widest opacity-40">MOUNT_POINTS</span>
                         </div>
-                        <div className="flex-1 overflow-y-auto p-4 space-y-2 font-mono text-xs">
+                        <div className="flex-1 overflow-y-auto p-4 space-y-4 font-mono text-xs">
                             {fileSystem.map(drive => (
                                 <button
                                     key={drive.id}
                                     onClick={() => { setActiveDrive(drive); setSelectedFileId(null); }}
-                                    className={`w-full text-left px-3 py-3 border border-transparent transition-all duration-300 group relative flex items-center justify-between
+                                    className={`w-full text-left flex items-center justify-between group
                       ${activeDrive.id === drive.id
-                                            ? 'bg-white text-black border-white'
-                                            : 'text-gray-400 hover:text-white hover:border-white/30'
+                                            ? 'opacity-100'
+                                            : 'opacity-40 hover:opacity-70'
                                         }`}
                                 >
-                                    <span className="uppercase tracking-wider">{drive.name}</span>
-                                    {activeDrive.id === drive.id && <span className="text-[10px] font-bold animate-pulse">●</span>}
+                                    <span className="uppercase tracking-widest flex items-center gap-2">
+                                        <span className={`w-1 h-1 bg-black ${activeDrive.id === drive.id ? 'opacity-100' : 'opacity-0'} transition-opacity`} />
+                                        {drive.name}
+                                    </span>
                                 </button>
                             ))}
-                        </div>
-                        {/* Drive Stats Decoration */}
-                        <div className="p-4 border-t border-white/10 flex flex-col gap-2 opacity-50">
-                            <div className="h-[1px] w-full bg-white/20"></div>
-                            <div className="flex justify-between text-[9px] font-mono text-white/60">
-                                <span>SYS_INTEGRITY</span>
-                                <span>99.9%</span>
-                            </div>
                         </div>
                     </div>
 
                     {/* Main File List */}
-                    <div className="flex-1 flex flex-col bg-[#1a1a1a]">
+                    <div className="flex-1 flex flex-col">
 
                         {/* List Header */}
-                        <div className="flex border-b border-white/10 text-[10px] md:text-xs font-bold tracking-widest text-white/40 uppercase bg-black/40">
-                            <div className="flex-1 px-4 py-3 border-r border-white/5">FILENAME</div>
-                            <div className="w-24 px-4 py-3 border-r border-white/5 hidden md:block">SIZE</div>
-                            <div className="w-24 px-4 py-3 border-r border-white/5 hidden md:block">TYPE</div>
-                            <div className="w-32 px-4 py-3 hidden md:block">CREATED</div>
+                        <div className="flex border-b border-black/5 text-[9px] font-bold tracking-widest opacity-30 uppercase p-4">
+                            <div className="flex-1">OBJECT_NAME</div>
+                            <div className="w-24 hidden md:block">SIZE</div>
+                            <div className="w-32 hidden md:block">CREATED</div>
                         </div>
 
                         {/* File Items */}
-                        <div className="flex-1 overflow-y-auto w-full p-2 space-y-1 font-mono text-xs md:text-sm">
+                        <div className="flex-1 overflow-y-auto w-full p-4 space-y-2 font-mono text-xs">
                             {currentFiles.map(file => (
                                 <div
                                     key={file.id}
                                     onClick={() => setSelectedFileId(file.id)}
                                     onDoubleClick={() => handleFileDoubleClick(file)}
-                                    className={`flex items-center cursor-pointer px-4 py-3 border border-transparent transition-all duration-200 group
+                                    className={`flex items-center cursor-pointer py-2 border-b border-dashed border-black/5 group transition-all duration-200
                        ${selectedFileId === file.id
-                                            ? 'bg-white text-black translate-x-1'
-                                            : 'text-white/80 hover:bg-white/5 hover:border-white/10'
+                                            ? 'opacity-100 pl-4'
+                                            : 'opacity-60 hover:opacity-80 hover:pl-2'
                                         }`}
                                 >
-                                    <div className="flex-1 truncate flex items-center gap-3">
-                                        <div className={`w-2 h-2 ${selectedFileId === file.id ? 'bg-black' : 'bg-white/50'} rotate-45 transform transition-colors`}></div>
+                                    <div className="flex-1 truncate flex items-center gap-4">
+                                        <span className="opacity-30 text-[10px]">{selectedFileId === file.id ? '>' : ''}</span>
                                         <span className="uppercase tracking-widest">{file.name}</span>
                                     </div>
-                                    <div className="w-24 hidden md:block opacity-60">{file.size}</div>
-                                    <div className="w-24 hidden md:block opacity-60">{file.type}</div>
-                                    <div className="w-32 hidden md:block opacity-60">{file.dateCreated}</div>
+                                    <div className="w-24 hidden md:block opacity-40 text-[10px]">{file.size}</div>
+                                    <div className="w-32 hidden md:block opacity-40 text-[10px]">{file.dateCreated}</div>
                                 </div>
                             ))}
+                            {currentFiles.length === 0 && (
+                                <div className="p-8 text-center opacity-30 text-[10px] tracking-widest uppercase">
+                                    [EMPTY_SECTOR]
+                                </div>
+                            )}
                         </div>
                     </div>
 
-                    {/* FILE VIEWER OVERLAY */}
+                    {/* FILE VIEWER OVERLAY - RAW */}
                     {openedFile && (
-                        <div className="absolute inset-0 z-50 bg-black/95 backdrop-blur-xl flex flex-col animate-in fade-in zoom-in-95 duration-300">
-                            <div className="flex items-center justify-between p-4 border-b border-white/20 bg-black">
-                                <div className="flex flex-col">
-                                    <span className="text-[9px] font-bold tracking-[0.3em] opacity-50 uppercase">TEXT_VIEWER</span>
-                                    <span className="font-mono text-xl uppercase tracking-widest">{openedFile.name}</span>
-                                </div>
+                        <div className="absolute inset-0 z-50 bg-[#EBE9E4] flex flex-col animate-in fade-in zoom-in-95 duration-300">
+                            <div className="flex items-center justify-between p-6 border-b border-black">
+                                <span className="font-mono text-sm uppercase tracking-widest">{openedFile.name}</span>
                                 <button
                                     onClick={() => setOpenedFile(null)}
-                                    className="h-10 w-10 border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-colors"
+                                    className="text-xs font-bold uppercase tracking-widest hover:underline"
                                 >
-                                    X
+                                    CLOSE_STREAM
                                 </button>
                             </div>
                             <div className="flex-1 p-8 md:p-16 overflow-y-auto">
-                                <pre className="whitespace-pre-wrap font-mono text-sm md:text-lg leading-relaxed text-white/90 tracking-wide selection:bg-white selection:text-black">
+                                <pre className="whitespace-pre-wrap font-mono text-sm md:text-base leading-loose opacity-80 uppercase selection:bg-black selection:text-[#EBE9E4]">
                                     {openedFile.content}
                                 </pre>
-                            </div>
-                            <div className="p-4 border-t border-white/10 text-center">
-                                <span className="text-[9px] font-bold tracking-[0.5em] opacity-30 uppercase">END_OF_FILE</span>
                             </div>
                         </div>
                     )}
 
                 </div>
 
-                {/* Footer */}
-                <div className="h-10 border-t border-white/20 bg-black flex items-center px-6 justify-between text-[9px] font-bold tracking-widest text-[#EBE9E4] uppercase">
-                    <div className="flex gap-8">
-                        <span>TOTAL_OBJECTS: <span className="font-mono text-white opacity-60 ml-2">{objectCount.toString().padStart(2, '0')}</span></span>
-                        <span>SELECTION: <span className="font-mono text-white opacity-60 ml-2">{selectedFileId ? 'ACTIVE' : 'NULL'}</span></span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <span className="hidden md:inline">STORAGE_AVAILABLE: </span>
-                        <span className="font-mono opacity-60">{freeSpace}</span>
-                    </div>
+                {/* Footer - Only Counts */}
+                <div className="h-12 border-t border-black flex items-center px-4 justify-between text-[9px] font-bold tracking-widest opacity-40 uppercase">
+                    <span>INDEX_COUNT: {objectCount}</span>
                 </div>
 
             </div>
@@ -202,8 +174,8 @@ export const FileManager: React.FC = () => {
         .tracking-tightest { letter-spacing: -0.05em; }
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); }
-        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.5); }
+        ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.3); }
       `}</style>
         </div>
     );
