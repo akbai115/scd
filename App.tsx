@@ -12,6 +12,7 @@ import { PasswordGate } from './components/PasswordGate';
 import { LoadingScreen } from './components/LoadingScreen';
 import { FileManager } from './components/FileManager';
 import { IntroAnimation } from './components/IntroAnimation';
+import { Notepad } from './components/Notepad';
 import { supabase } from './src/lib/supabase';
 
 export type View = 'YZY' | 'THE_ARK' | 'STILL' | 'ADMIN' | 'FILES' | 'SYSTEM_FAILURE';
@@ -307,6 +308,9 @@ const App: React.FC = () => {
 
             {/* ARK LOGO - Always visible */}
             <ArkLogo />
+
+            {/* LEFT NOTEPAD */}
+            <Notepad />
 
             {/* GLOBAL BANNER - UNDER NAVBAR */}
             {/* GLOBAL BANNER - UNDER NAVBAR */}
