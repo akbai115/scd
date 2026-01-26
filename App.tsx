@@ -11,6 +11,7 @@ import { ArkLogo } from './components/ArkLogo';
 import { PasswordGate } from './components/PasswordGate';
 import { LoadingScreen } from './components/LoadingScreen';
 import { FileManager } from './components/FileManager';
+import { IntroAnimation } from './components/IntroAnimation';
 import { supabase } from './src/lib/supabase';
 
 export type View = 'YZY' | 'THE_ARK' | 'STILL' | 'ADMIN' | 'FILES' | 'SYSTEM_FAILURE';
@@ -263,6 +264,7 @@ const App: React.FC = () => {
 
   return (
     <>
+      <IntroAnimation />
       {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
 
       <div
