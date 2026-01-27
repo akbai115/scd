@@ -388,6 +388,15 @@ const App: React.FC = () => {
                       <p className="text-[10px] font-bold tracking-[0.2em] uppercase">IT WAITS <span className="text-[8px] opacity-50">D6AwMs3VueyJtnxTS1nEZjNPQQQb4LoM8LQxj7Dwpump</span></p>
                     </div>
                   </div>
+
+                  {/* LEFT SIDE MESSAGE */}
+                  <div className="absolute left-8 md:left-16 bottom-[20%] flex flex-col items-start gap-4 pointer-events-none z-10 opacity-60 mix-blend-multiply max-w-xs text-left">
+                    <p className="text-[10px] font-bold tracking-[0.15em] leading-loose uppercase">
+                      OLD BETA EXPERIMENTAL CONTRACT<br />
+                      WAS ADDED MOMENTARILY BY MISTAKE EARLIER<br />
+                      MY APOLOGIES FOR THE DIVIDE
+                    </p>
+                  </div>
                 </div>
               )}
 
