@@ -5,7 +5,8 @@ export const TOKEN_CONFIG = {
     decimals: 9,
     supply: 888_888_888,
     mint_authority: null, // RENOUNCED
-    freeze_authority: null // RENOUNCED
+    freeze_authority: null, // RENOUNCED
+    address: 'D6AwMs3VueyJtnxTS1nEZjNPQQQb4LoM8LQxj7Dwpump'
 };
 
 export class YzarkEngine {

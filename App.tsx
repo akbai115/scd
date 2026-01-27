@@ -13,9 +13,11 @@ import { LoadingScreen } from './components/LoadingScreen';
 import { FileManager } from './components/FileManager';
 import { IntroAnimation } from './components/IntroAnimation';
 import { Notepad } from './components/Notepad';
+import { Events } from './Events';
+import { LiveStream } from './components/LiveStream';
 import { supabase } from './src/lib/supabase';
 
-export type View = 'YZY' | 'THE_ARK' | 'STILL' | 'ADMIN' | 'FILES' | 'SYSTEM_FAILURE';
+export type View = 'YZY' | 'THE_ARK' | 'STILL' | 'ADMIN' | 'FILES' | 'EVENTS' | 'LIVE' | 'SYSTEM_FAILURE';
 
 const App: React.FC = () => {
   const [view, setView] = useState<View>(() => {
@@ -25,6 +27,8 @@ const App: React.FC = () => {
     if (p === '/the_ark') return 'THE_ARK';
     if (p === '/still') return 'STILL';
     if (p === '/files') return 'FILES';
+    if (p === '/events') return 'EVENTS';
+    if (p === '/live') return 'LIVE';
     if (p === '/') return 'YZY';
     return 'SYSTEM_FAILURE';
   });
@@ -36,6 +40,8 @@ const App: React.FC = () => {
       else if (p === '/the_ark') setView('THE_ARK');
       else if (p === '/still') setView('STILL');
       else if (p === '/files') setView('FILES');
+      else if (p === '/events') setView('EVENTS');
+      else if (p === '/live') setView('LIVE');
       else if (p === '/') setView('YZY');
       else setView('SYSTEM_FAILURE');
     };
@@ -265,7 +271,7 @@ const App: React.FC = () => {
 
   return (
     <>
-      <IntroAnimation />
+      {/* <IntroAnimation /> */}
       {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
 
       <div
@@ -320,11 +326,16 @@ const App: React.FC = () => {
 
             <div className="absolute top-0 left-0 right-0 h-48 flex items-center justify-center z-[100]">
               <nav className="flex flex-row gap-12 md:gap-24 text-[8px] font-bold tracking-[1em] uppercase pointer-events-auto items-center opacity-60 hover:opacity-100 transition-opacity duration-[1500ms]">
-                {(['YZY', 'THE_ARK', 'STILL', 'FILES'] as View[]).map((v) => (
+                {(['YZY', 'THE_ARK', 'STILL', 'FILES', 'EVENTS', 'LIVE'] as View[]).map((v) => (
                   <button
                     key={v}
                     onClick={(e) => { e.stopPropagation(); setView(v); setClickTrigger(t => t + 1); }}
-                    className={`transition-all duration-[1200ms] hover:text-black hover:scale-105 active:scale-95 ${view === v ? 'text-black opacity-100 chiseled-nav' : 'text-black opacity-20'}`}
+                    className={`transition-all duration-[1200ms] hover:scale-105 active:scale-95 
+                      ${(v === 'EVENTS' || v === 'LIVE') ? 'text-red-600 hover:text-red-500' : 'hover:text-black'}
+                      ${view === v
+                        ? (v === 'EVENTS' || v === 'LIVE' ? 'opacity-100 chiseled-nav-red' : 'text-black opacity-100 chiseled-nav')
+                        : (v === 'EVENTS' || v === 'LIVE' ? 'opacity-40' : 'text-black opacity-20')
+                      }`}
                   >
                     {v}
                   </button>
@@ -343,6 +354,40 @@ const App: React.FC = () => {
                   <h1 className="times-bold text-[18rem] md:text-[24rem] tracking-tightest leading-none select-none opacity-20 mt-32 uppercase">YZY</h1>
                   <Vlinkjn />
                   <div className="absolute bottom-32 text-[9px] font-bold tracking-[2.5em] opacity-50 uppercase">JAN 2026</div>
+
+                  {/* RIGHT SIDE MANIFESTO */}
+                  <div className="absolute right-8 md:right-16 top-1/2 -translate-y-1/2 flex flex-col items-end text-right gap-6 pointer-events-none z-10 opacity-70 mix-blend-multiply">
+                    <div className="flex flex-col gap-1">
+                      <p className="text-[10px] font-bold tracking-[0.2em] uppercase">THE ARK WAS NEVER ABOUT ESCAPE</p>
+                      <p className="text-[10px] font-bold tracking-[0.2em] uppercase">IT WAS ABOUT SELECTION</p>
+                    </div>
+
+                    <div className="flex flex-col gap-1">
+                      <p className="text-[10px] font-bold tracking-[0.2em] uppercase">THIS IS THE ONE</p>
+                      <p className="text-[10px] font-bold tracking-[0.2em] uppercase">DON’T DIVIDE</p>
+                    </div>
+
+                    <div className="flex flex-col gap-1">
+                      <p className="text-[10px] font-bold tracking-[0.2em] uppercase">NOT EVERYONE FITS</p>
+                      <p className="text-[10px] font-bold tracking-[0.2em] uppercase">NOT EVERYONE WANTS IT</p>
+                      <p className="text-[10px] font-bold tracking-[0.2em] uppercase">NOT EVERYONE SURVIVES</p>
+                    </div>
+
+                    <div className="flex flex-col gap-1">
+                      <p className="text-[10px] font-bold tracking-[0.2em] uppercase">THE FLOOD DOESN’T ANNOUNCE ITSELF</p>
+                      <p className="text-[10px] font-bold tracking-[0.2em] uppercase">THE ARK DOESN’T EXPLAIN</p>
+                    </div>
+
+                    <div className="flex flex-col gap-1">
+                      <p className="text-[10px] font-bold tracking-[0.2em] uppercase">THIS IS THE ONE</p>
+                      <p className="text-[10px] font-bold tracking-[0.2em] uppercase">DON’T DIVIDE</p>
+                    </div>
+
+                    <div className="flex flex-col gap-1">
+                      <p className="text-[10px] font-bold tracking-[0.2em] uppercase">THE ARK DOESN’T BEG</p>
+                      <p className="text-[10px] font-bold tracking-[0.2em] uppercase">IT WAITS <span className="text-[8px] opacity-50">D6AwMs3VueyJtnxTS1nEZjNPQQQb4LoM8LQxj7Dwpump</span></p>
+                    </div>
+                  </div>
                 </div>
               )}
 
@@ -367,6 +412,8 @@ const App: React.FC = () => {
                 )
               )}
               {view === 'FILES' && <FileManager />}
+              {view === 'EVENTS' && <Events onNavigateToCheckout={() => window.open('https://yzy.com', '_blank')} onImpact={() => setTransmissionTrigger(t => t + 1)} />}
+              {view === 'LIVE' && <LiveStream />}
 
               {view === 'SYSTEM_FAILURE' && (
                 <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/90 z-[3000] text-[#EBE9E4]">
