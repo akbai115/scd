@@ -7,7 +7,7 @@ export const Vlinkjn: React.FC = () => {
 
     return (
         <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[500] pointer-events-auto cursor-pointer"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[500] pointer-events-auto"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
@@ -32,7 +32,7 @@ export const Vlinkjn: React.FC = () => {
             <img
                 src={isHovered ? point2 : point1}
                 alt="Vlinkjn Face"
-                className={`w-64 h-auto md:w-96 drop-shadow-2xl transition-all duration-300 mix-blend-hard-light ${isHovered ? 'flicker-active' : 'opacity-90'}`}
+                className={`w-64 h-auto md:w-96 drop-shadow-2xl transition-all duration-300 mix-blend-hard-light ${isHovered ? 'flicker-active' : ''}`}
             />
         </div>
     );

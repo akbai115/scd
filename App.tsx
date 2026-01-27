@@ -275,15 +275,15 @@ const App: React.FC = () => {
       {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
 
       <div
-        className={`relative w-full h-screen bg-[#EBE9E4] overflow-hidden select-none cursor-none transition-all duration-2000 ${isGlitching ? 'grayscale contrast-[105%] blur-[12px] brightness-[0.95]' : ''}`}
+        className={`relative w-full h-screen bg-[#111111] overflow-hidden select-none cursor-none transition-all duration-2000 ${isGlitching ? 'grayscale contrast-[105%] blur-[12px] brightness-[0.95]' : ''}`}
         onMouseDown={handleStartInteraction}
         onMouseUp={handleEndInteraction}
         onTouchStart={handleStartInteraction}
         onTouchEnd={handleEndInteraction}
       >
-        <div className="fixed inset-0 pointer-events-none z-[2000] opacity-[0.02] mix-blend-multiply bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+        <div className="fixed inset-0 pointer-events-none z-[2000] opacity-[0.05] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
 
-        <div className={`absolute inset-0 z-10 pointer-events-none bg-gradient-to-b from-[#EBE9E4]/30 via-transparent to-[#EBE9E4]/50 backdrop-blur-[4px] transition-opacity duration-[4000ms] ${isSynced ? 'opacity-100' : 'opacity-0'}`} />
+        <div className={`absolute inset-0 z-10 pointer-events-none bg-gradient-to-b from-[#111111]/30 via-transparent to-[#111111]/50 backdrop-blur-[4px] transition-opacity duration-[4000ms] ${isSynced ? 'opacity-100' : 'opacity-0'}`} />
 
         {!isSynced ? (
           <div className="absolute inset-0 bg-black z-[1000] flex flex-col items-center justify-center transition-all duration-2000">
@@ -299,7 +299,7 @@ const App: React.FC = () => {
         ) : (
           <>
             <Canvas camera={{ position: [0, 0, 5], fov: 75 }} style={{ width: '100vw', height: '100vh', position: 'absolute', top: 0, left: 0 }} dpr={[1, typeof window !== 'undefined' && window.innerWidth < 768 ? 1 : 1.5]}>
-              <color attach="background" args={['#EBE9E4']} />
+              <color attach="background" args={['#111111']} />
               <ambientLight intensity={0.2} />
               <pointLight position={[0, 0, 10]} intensity={2.0} />
               <FabricPlane
@@ -321,23 +321,23 @@ const App: React.FC = () => {
             {/* GLOBAL BANNER - UNDER NAVBAR */}
             {/* GLOBAL BANNER - UNDER NAVBAR */}
             <div className="absolute top-40 left-0 right-0 flex justify-center z-[100] pointer-events-none">
-              <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-black/80 animate-pulse">{bannerText}</span>
+              <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#EBE9E4]/80 animate-pulse">{bannerText}</span>
             </div>
 
             <div className="absolute top-0 left-0 right-0 h-48 flex items-center justify-center z-[100]">
-              <nav className="flex flex-row gap-12 md:gap-24 text-[8px] font-bold tracking-[1em] uppercase pointer-events-auto items-center opacity-60 hover:opacity-100 transition-opacity duration-[1500ms]">
+              <nav className="flex flex-row gap-12 md:gap-24 text-[10px] font-black tracking-[0.5em] uppercase pointer-events-auto items-center text-[#EBE9E4]">
                 {(['YZY', 'THE_ARK', 'STILL', 'FILES', 'EVENTS', 'LIVE'] as View[]).map((v) => (
                   <button
                     key={v}
                     onClick={(e) => { e.stopPropagation(); setView(v); setClickTrigger(t => t + 1); }}
-                    className={`transition-all duration-[1200ms] hover:scale-105 active:scale-95 
-                      ${(v === 'EVENTS' || v === 'LIVE') ? 'text-red-600 hover:text-red-500' : 'hover:text-black'}
+                    className={`transition-all duration-300 hover:scale-105 active:scale-95 border-b-2 border-transparent hover:border-[#EBE9E4]
+                      ${(v === 'EVENTS' || v === 'LIVE') ? 'text-red-600 hover:text-red-500' : 'hover:text-[#EBE9E4]'}
                       ${view === v
-                        ? (v === 'EVENTS' || v === 'LIVE' ? 'opacity-100 chiseled-nav-red' : 'text-black opacity-100 chiseled-nav')
-                        : (v === 'EVENTS' || v === 'LIVE' ? 'opacity-40' : 'text-black opacity-20')
+                        ? (v === 'EVENTS' || v === 'LIVE' ? 'opacity-100 border-red-600' : 'opacity-100 border-[#EBE9E4]')
+                        : 'opacity-40 hover:opacity-100'
                       }`}
                   >
-                    {v}
+                    {v === 'YZY' ? 'IAPW' : v}
                   </button>
                 ))}
               </nav>
@@ -347,56 +347,50 @@ const App: React.FC = () => {
 
             <div className="absolute inset-0 pointer-events-none z-50">
               {view === 'YZY' && (
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-black transition-all duration-[3000ms]">
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-[#EBE9E4] transition-all duration-[3000ms]">
                   <div className="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-[16rem] flex flex-col items-center">
-                    <h2 className="times-bold text-2xl md:text-5xl tracking-tightest opacity-60 blur-[1px] uppercase">STAY ON YOUR SOVEREIGNTY</h2>
+                    {/* Subheader removed for silence */}
                   </div>
-                  <h1 className="times-bold text-[18rem] md:text-[24rem] tracking-tightest leading-none select-none opacity-20 mt-32 uppercase">YZY</h1>
+                  <h1 className="times-bold text-[18rem] md:text-[24rem] tracking-tighter leading-none select-none text-[#EBE9E4] mt-32 uppercase mix-blend-soft-light opacity-90">IAPW</h1>
                   <Vlinkjn />
-                  <div className="absolute bottom-32 text-[9px] font-bold tracking-[2.5em] opacity-50 uppercase">JAN 2026</div>
+                  <div className="absolute bottom-32 text-[10px] font-black tracking-[1.5em] text-[#EBE9E4] uppercase">JAN 2026</div>
 
                   {/* RIGHT SIDE MANIFESTO */}
-                  <div className="absolute right-8 md:right-16 top-1/2 -translate-y-1/2 flex flex-col items-end text-right gap-6 pointer-events-none z-10 opacity-70 mix-blend-multiply">
-                    <div className="flex flex-col gap-1">
-                      <p className="text-[10px] font-bold tracking-[0.2em] uppercase">THE ARK WAS NEVER ABOUT ESCAPE</p>
-                      <p className="text-[10px] font-bold tracking-[0.2em] uppercase">IT WAS ABOUT SELECTION</p>
+                  {/* RIGHT SIDE MANIFESTO - HEAVY/CARVED */}
+                  <div className="absolute right-8 md:right-16 top-1/2 -translate-y-1/2 flex flex-col items-end text-right gap-8 pointer-events-none z-10">
+                    <div className="flex flex-col gap-0">
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-[#EBE9E4]">THE ARK WAS NEVER ABOUT ESCAPE</p>
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-[#EBE9E4]">IT WAS ABOUT SELECTION</p>
                     </div>
 
-                    <div className="flex flex-col gap-1">
-                      <p className="text-[10px] font-bold tracking-[0.2em] uppercase">THIS IS THE ONE</p>
-                      <p className="text-[10px] font-bold tracking-[0.2em] uppercase">DON’T DIVIDE</p>
+                    <div className="flex flex-col gap-0">
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-[#EBE9E4]">THIS IS THE ONE</p>
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-[#EBE9E4]">DON’T DIVIDE</p>
                     </div>
 
-                    <div className="flex flex-col gap-1">
-                      <p className="text-[10px] font-bold tracking-[0.2em] uppercase">NOT EVERYONE FITS</p>
-                      <p className="text-[10px] font-bold tracking-[0.2em] uppercase">NOT EVERYONE WANTS IT</p>
-                      <p className="text-[10px] font-bold tracking-[0.2em] uppercase">NOT EVERYONE SURVIVES</p>
+                    <div className="flex flex-col gap-0">
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-[#EBE9E4]">NOT EVERYONE FITS</p>
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-[#EBE9E4]">NOT EVERYONE WANTS IT</p>
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-[#EBE9E4]">NOT EVERYONE SURVIVES</p>
                     </div>
 
-                    <div className="flex flex-col gap-1">
-                      <p className="text-[10px] font-bold tracking-[0.2em] uppercase">THE FLOOD DOESN’T ANNOUNCE ITSELF</p>
-                      <p className="text-[10px] font-bold tracking-[0.2em] uppercase">THE ARK DOESN’T EXPLAIN</p>
+                    <div className="flex flex-col gap-0">
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-[#EBE9E4]">THE FLOOD DOESN’T ANNOUNCE ITSELF</p>
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-[#EBE9E4]">THE ARK DOESN’T EXPLAIN</p>
                     </div>
 
-                    <div className="flex flex-col gap-1">
-                      <p className="text-[10px] font-bold tracking-[0.2em] uppercase">THIS IS THE ONE</p>
-                      <p className="text-[10px] font-bold tracking-[0.2em] uppercase">DON’T DIVIDE</p>
+                    <div className="flex flex-col gap-0">
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-[#EBE9E4]">THIS IS THE ONE</p>
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-[#EBE9E4]">DON’T DIVIDE</p>
                     </div>
 
-                    <div className="flex flex-col gap-1">
-                      <p className="text-[10px] font-bold tracking-[0.2em] uppercase">THE ARK DOESN’T BEG</p>
-                      <p className="text-[10px] font-bold tracking-[0.2em] uppercase">IT WAITS <span className="text-[8px] opacity-50">D6AwMs3VueyJtnxTS1nEZjNPQQQb4LoM8LQxj7Dwpump</span></p>
+                    <div className="flex flex-col gap-0">
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-[#EBE9E4]">THE ARK DOESN’T BEG</p>
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-[#EBE9E4]">IT WAITS <span className="text-[10px] opacity-100 font-mono">D6AwMs3VueyJtnxTS1nEZjNPQQQb4LoM8LQxj7Dwpump</span></p>
                     </div>
                   </div>
 
-                  {/* LEFT SIDE MESSAGE */}
-                  <div className="absolute left-8 md:left-16 bottom-[20%] flex flex-col items-start gap-4 pointer-events-none z-10 opacity-60 mix-blend-multiply max-w-xs text-left">
-                    <p className="text-[10px] font-bold tracking-[0.15em] leading-loose uppercase">
-                      OLD BETA EXPERIMENTAL CONTRACT<br />
-                      WAS ADDED MOMENTARILY BY MISTAKE EARLIER<br />
-                      MY APOLOGIES FOR THE DIVIDE
-                    </p>
-                  </div>
+                  {/* LEFT SIDE MESSAGE REMOVED - "Refuses to explain" */}
                 </div>
               )}
 
