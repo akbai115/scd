@@ -57,7 +57,7 @@ export const TransmissionOverlay: React.FC<TransmissionOverlayProps> = ({ messag
 
       {/* Softened Alert Labels */}
       <div className={`absolute top-20 left-0 right-0 flex justify-center transition-opacity duration-1000 ${isDissolving ? 'opacity-0' : 'opacity-50'}`}>
-        <span className="text-[10px] font-bold tracking-[2.5em] uppercase text-black">BROADCAST_SYSTEM</span>
+        <span className="text-[10px] font-bold tracking-[2.5em] uppercase text-white">BROADCAST_SYSTEM</span>
       </div>
 
       {/* Main Content Area */}
@@ -70,7 +70,7 @@ export const TransmissionOverlay: React.FC<TransmissionOverlayProps> = ({ messag
             <img
               src={imageUrl}
               alt="VISION"
-              className="max-h-[80vh] max-w-full drop-shadow-2xl opacity-90 border-2 border-black/5"
+              className="max-h-[80vh] max-w-full drop-shadow-2xl opacity-90 border-2 border-white/5"
               style={{ mixBlendMode: 'normal' }}
             />
             {isSubliminal && <div className="absolute inset-0 bg-white/10 mix-blend-overlay animate-pulse" />}
@@ -102,13 +102,13 @@ export const TransmissionOverlay: React.FC<TransmissionOverlayProps> = ({ messag
       </div>
 
       {/* Lateral Indicators - further faded */}
-      <div className={`absolute left-12 top-1/2 -translate-y-1/2 flex flex-col gap-32 opacity-40 transition-opacity duration-1000 ${isDissolving ? 'opacity-0' : ''}`}>
-        <div className="w-[1px] h-24 bg-black" />
+      <div className={`absolute left-12 top-1/2 -translate-y-1/2 flex flex-col gap-32 opacity-20 text-white transition-opacity duration-1000 ${isDissolving ? 'opacity-0' : ''}`}>
+        <div className="w-[1px] h-24 bg-white" />
         <span className="times-bold text-lg uppercase [writing-mode:vertical-lr] rotate-180">OS_0.1</span>
       </div>
-      <div className={`absolute right-12 top-1/2 -translate-y-1/2 flex flex-col gap-32 opacity-40 transition-opacity duration-1000 ${isDissolving ? 'opacity-0' : ''}`}>
+      <div className={`absolute right-12 top-1/2 -translate-y-1/2 flex flex-col gap-32 opacity-20 text-white transition-opacity duration-1000 ${isDissolving ? 'opacity-0' : ''}`}>
         <span className="times-bold text-lg uppercase [writing-mode:vertical-lr]">OS_0.1</span>
-        <div className="w-[1px] h-24 bg-black" />
+        <div className="w-[1px] h-24 bg-white" />
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ export const TOKEN_CONFIG = {
     supply: 888_888_888,
     mint_authority: null, // RENOUNCED
     freeze_authority: null, // RENOUNCED
-    address: 'D6AwMs3VueyJtnxTS1nEZjNPQQQb4LoM8LQxj7Dwpump'
+    address: '54F9DbbQqZJKQdweH8WnwBEa8MWVNhUUdP3NJFREpump'
 };
 
 export class YzarkEngine {

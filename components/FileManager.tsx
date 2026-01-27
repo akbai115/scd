@@ -106,7 +106,7 @@ export const FileManager: React.FC = () => {
     };
 
     return (
-        <div className="absolute inset-0 flex flex-col items-center justify-center pt-32 pb-8 px-4 md:px-12 md:pt-48 z-[40] pointer-events-auto overflow-hidden animate-in fade-in zoom-in-95 duration-500">
+        <div className="absolute inset-0 flex flex-col items-center justify-center pt-32 pb-8 px-4 md:px-12 md:pt-48 z-[40] pointer-events-auto overflow-hidden animate-in fade-in zoom-in-95 duration-500 text-white">
 
             {/* Background Noise Layer for cohesion */}
             <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.03] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
@@ -115,7 +115,7 @@ export const FileManager: React.FC = () => {
             <div className="w-full max-w-6xl flex-1 flex flex-col relative z-10 transition-all duration-500 group">
 
                 {/* Header - RAW DATA VISUALIZATION */}
-                <div className="border-b border-black p-4 flex items-end justify-between select-none">
+                <div className="border-b border-white p-4 flex items-end justify-between select-none">
                     <div className="flex flex-col gap-1">
                         <span className="text-[9px] font-bold tracking-[0.5em] opacity-40 uppercase">SYSTEM_DIRECTORY</span>
                         <h2 className="times-bold text-4xl tracking-tightest uppercase leading-none opacity-80">INDEX</h2>
@@ -126,8 +126,8 @@ export const FileManager: React.FC = () => {
                 <div className="flex-1 flex flex-col md:flex-row overflow-hidden relative">
 
                     {/* Sidebar / Drives */}
-                    <div className="w-full md:w-64 border-b md:border-b-0 md:border-r border-black/10 flex flex-col">
-                        <div className="p-4 border-b border-black/5">
+                    <div className="w-full md:w-64 border-b md:border-b-0 md:border-r border-white/10 flex flex-col">
+                        <div className="p-4 border-b border-white/5">
                             <span className="text-[9px] font-bold tracking-widest opacity-40">MOUNT_POINTS</span>
                         </div>
                         <div className="flex-1 overflow-y-auto p-4 space-y-4 font-mono text-xs">
@@ -142,7 +142,7 @@ export const FileManager: React.FC = () => {
                                         }`}
                                 >
                                     <span className="uppercase tracking-widest flex items-center gap-2">
-                                        <span className={`w-1 h-1 bg-black ${activeDrive.id === drive.id ? 'opacity-100' : 'opacity-0'} transition-opacity`} />
+                                        <span className={`w-1 h-1 bg-white ${activeDrive.id === drive.id ? 'opacity-100' : 'opacity-0'} transition-opacity`} />
                                         {drive.name}
                                     </span>
                                 </button>
@@ -154,7 +154,7 @@ export const FileManager: React.FC = () => {
                     <div className="flex-1 flex flex-col">
 
                         {/* List Header */}
-                        <div className="flex border-b border-black/5 text-[9px] font-bold tracking-widest opacity-30 uppercase p-4">
+                        <div className="flex border-b border-white/5 text-[9px] font-bold tracking-widest opacity-30 uppercase p-4">
                             <div className="flex-1">OBJECT_NAME</div>
                             <div className="w-24 hidden md:block">SIZE</div>
                             <div className="w-32 hidden md:block">CREATED</div>
@@ -167,8 +167,8 @@ export const FileManager: React.FC = () => {
                                     key={file.id}
                                     onClick={() => setSelectedFileId(file.id)}
                                     onDoubleClick={() => handleFileDoubleClick(file)}
-                                    className={`flex items-center cursor-pointer py-2 border-b border-dashed border-black/5 group transition-all duration-200
-                       ${selectedFileId === file.id
+                                    className={`flex items-center cursor-pointer py-2 border-b border-dashed border-white/5 group transition-all duration-200
+                                       ${selectedFileId === file.id
                                             ? 'opacity-100 pl-4'
                                             : 'opacity-60 hover:opacity-80 hover:pl-2'
                                         }`}
@@ -191,8 +191,8 @@ export const FileManager: React.FC = () => {
 
                     {/* FILE VIEWER OVERLAY - RAW */}
                     {openedFile && (
-                        <div className="absolute inset-0 z-50 bg-[#EBE9E4] flex flex-col animate-in fade-in zoom-in-95 duration-300">
-                            <div className="flex items-center justify-between p-6 border-b border-black">
+                        <div className="absolute inset-0 z-50 bg-[#111111] flex flex-col animate-in fade-in zoom-in-95 duration-300">
+                            <div className="flex items-center justify-between p-6 border-b border-white">
                                 <span className="font-mono text-sm uppercase tracking-widest">{openedFile.name}</span>
                                 <button
                                     onClick={() => setOpenedFile(null)}
@@ -202,7 +202,7 @@ export const FileManager: React.FC = () => {
                                 </button>
                             </div>
                             <div className="flex-1 p-8 md:p-16 overflow-y-auto">
-                                <pre className="whitespace-pre-wrap font-mono text-sm md:text-base leading-loose opacity-80 uppercase selection:bg-black selection:text-[#EBE9E4]">
+                                <pre className="whitespace-pre-wrap font-mono text-sm md:text-base leading-loose opacity-80 uppercase selection:bg-white selection:text-black">
                                     {openedFile.content}
                                 </pre>
                             </div>
@@ -212,7 +212,7 @@ export const FileManager: React.FC = () => {
                 </div>
 
                 {/* Footer - Only Counts */}
-                <div className="h-12 border-t border-black flex items-center px-4 justify-between text-[9px] font-bold tracking-widest opacity-40 uppercase">
+                <div className="h-12 border-t border-white flex items-center px-4 justify-between text-[9px] font-bold tracking-widest opacity-40 uppercase">
                     <span>INDEX_COUNT: {objectCount}</span>
                 </div>
 
@@ -222,8 +222,8 @@ export const FileManager: React.FC = () => {
         .tracking-tightest { letter-spacing: -0.05em; }
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); }
-        ::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.3); }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
       `}</style>
         </div>
     );

@@ -128,7 +128,7 @@ export const Admin: React.FC<AdminProps> = ({ onTransmit, onBannerUpdate, curren
         </div>
 
         {/* RIGHT COLUMN: SYSTEM */}
-        <div className="flex flex-col gap-10 p-8 border-l border-black/5">
+        <div className="flex flex-col gap-10 p-8 border-l border-white/10 text-white">
           <header className="flex flex-col gap-2">
             <span className="text-[9px] font-bold tracking-[1.5em] opacity-60 uppercase">O.S. INFRASTRUCTURE</span>
             <h2 className="times-bold text-4xl tracking-tightest uppercase md:text-5xl">METRICS</h2>
@@ -140,8 +140,8 @@ export const Admin: React.FC<AdminProps> = ({ onTransmit, onBannerUpdate, curren
                 <span className="text-[9px] font-bold tracking-widest opacity-60 uppercase">CPU_SATURATION</span>
                 <span className="text-lg font-mono">92.4%</span>
               </div>
-              <div className="w-full h-[2px] bg-black/10">
-                <div className="h-full bg-black w-[92%] animate-pulse" />
+              <div className="w-full h-[2px] bg-white/10">
+                <div className="h-full bg-white w-[92%] animate-pulse" />
               </div>
             </div>
 
@@ -150,22 +150,22 @@ export const Admin: React.FC<AdminProps> = ({ onTransmit, onBannerUpdate, curren
                 <span className="text-[9px] font-bold tracking-widest opacity-60 uppercase">VIBRATION_STABILITY</span>
                 <span className="text-lg font-mono">HIGH</span>
               </div>
-              <div className="w-full h-[2px] bg-black/10">
-                <div className="h-full bg-black w-[96%]" />
+              <div className="w-full h-[2px] bg-white/10">
+                <div className="h-full bg-white w-[96%]" />
               </div>
             </div>
 
             {/* LOG STREAM */}
-            <div className="flex flex-col gap-4 pt-8 border-t border-black/10 mt-4">
+            <div className="flex flex-col gap-4 pt-8 border-t border-white/10 mt-4">
               <span className="text-[9px] font-bold tracking-widest opacity-60 uppercase">LOG_STREAM</span>
               <div className="flex flex-col gap-2 font-mono text-[10px] opacity-60 h-32 overflow-hidden relative">
                 {history.map((h, i) => (
-                  <div key={i} className="flex justify-between border-b border-black/5 pb-1 animate-in slide-in-from-left-2 duration-300">
+                  <div key={i} className="flex justify-between border-b border-white/10 pb-1 animate-in slide-in-from-left-2 duration-300">
                     <span className="truncate flex-1 uppercase">{'>'} {h}</span>
                     <span className="opacity-30 pl-2">{new Date().toLocaleTimeString([], { hour12: false, second: '2-digit' })}</span>
                   </div>
                 ))}
-                <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-[#EBE9E4] to-transparent pointer-events-none" />
+                <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-[#111111] to-transparent pointer-events-none" />
               </div>
             </div>
           </div>

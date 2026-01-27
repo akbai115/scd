@@ -16,19 +16,19 @@ export const Archive: React.FC = () => {
       <div className="flex gap-24 h-[60vh]">
         {BLUEPRINTS.map((bp, i) => (
           <div key={bp.id} className="w-[30vw] h-full flex flex-col group cursor-crosshair">
-            <div className="flex-1 border border-black/10 bg-black/5 flex items-center justify-center p-12 transition-all duration-500 group-hover:bg-white group-hover:border-black/30">
+            <div className="flex-1 border border-white/10 bg-white/5 flex items-center justify-center p-12 transition-all duration-500 group-hover:bg-white/10 group-hover:border-white/30">
               {/* Procedural Geometric Placeholder for Architectural Study */}
-              <div className="w-full h-full border border-black/5 relative overflow-hidden">
+              <div className="w-full h-full border border-white/5 relative overflow-hidden">
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className={`w-32 h-32 border-2 border-black/20 ${i % 2 === 0 ? 'rounded-full' : 'rotate-45'}`} />
-                  <div className="absolute inset-12 border border-black/10" />
-                  <div className="absolute h-full w-[1px] bg-black/5 left-1/2" />
-                  <div className="absolute w-full h-[1px] bg-black/5 top-1/2" />
+                  <div className={`w-32 h-32 border-2 border-white/20 ${i % 2 === 0 ? 'rounded-full' : 'rotate-45'}`} />
+                  <div className="absolute inset-12 border border-white/10" />
+                  <div className="absolute h-full w-[1px] bg-white/5 left-1/2" />
+                  <div className="absolute w-full h-[1px] bg-white/5 top-1/2" />
                 </div>
-                <div className="absolute bottom-4 left-4 text-[8px] font-bold opacity-50 uppercase">REF_{bp.id}</div>
+                <div className="absolute bottom-4 left-4 text-[8px] font-bold opacity-50 uppercase text-white">REF_{bp.id}</div>
               </div>
             </div>
-            <div className="mt-6 flex flex-col gap-1 text-black">
+            <div className="mt-6 flex flex-col gap-1 text-white">
               <span className="text-[10px] font-bold tracking-[0.4em] opacity-60 uppercase">BLUEPRINT_FILE_{i + 1}</span>
               <span className="times-bold text-xl tracking-tighter uppercase">{bp.title}</span>
               <span className="text-[9px] font-bold tracking-[0.2em] opacity-70 uppercase">{bp.desc}</span>

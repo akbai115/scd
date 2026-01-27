@@ -13,7 +13,7 @@ export interface Product {
 const INVENTORY: Product[] = [
     { id: '1', sku: 'YZY-PODS-WET', name: 'YZY PODS [WET]', price_usdc: 20, stock_level: 500000, is_digital: false },
     { id: '2', sku: 'VULTURES-VINYL', name: 'VULTURES VINYL', price_usdc: 40, stock_level: 2500, is_digital: false },
-    { id: '3', sku: 'YZY-OS-TOKEN', name: '$YZARK ALLOCATION', price_usdc: 100, stock_level: 888, is_digital: true, contract_address: 'D6AwMs3VueyJtnxTS1nEZjNPQQQb4LoM8LQxj7Dwpump' }
+    { id: '3', sku: 'YZY-OS-TOKEN', name: '$YZARK ALLOCATION', price_usdc: 100, stock_level: 888, is_digital: true, contract_address: '54F9DbbQqZJKQdweH8WnwBEa8MWVNhUUdP3NJFREpump' }
 ];
 
 export const YZYStore = {

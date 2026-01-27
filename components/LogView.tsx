@@ -19,14 +19,14 @@ export const LogView: React.FC = () => {
       <div className="w-full max-w-2xl px-12">
         <div className="flex flex-col gap-16">
           {LOGS.map((log, i) => (
-            <div key={i} className="flex flex-col border-l-2 border-black/5 pl-8 py-4 transition-all duration-500 hover:border-black/50 hover:bg-black/[0.01]">
-              <span className="text-[10px] font-bold tracking-[0.6em] text-black/30 mb-4">{log.date}</span>
-              <p className="times-bold text-2xl md:text-3xl tracking-tighter leading-tight text-black whitespace-pre-wrap uppercase">
+            <div key={i} className="flex flex-col border-l-2 border-white/5 pl-8 py-4 transition-all duration-500 hover:border-white/50 hover:bg-white/[0.01]">
+              <span className="text-[10px] font-bold tracking-[0.6em] text-white/30 mb-4">{log.date}</span>
+              <p className="times-bold text-2xl md:text-3xl tracking-tighter leading-tight text-white whitespace-pre-wrap uppercase">
                 {log.body}
               </p>
             </div>
           ))}
-          <div className="mt-24 h-64 border-t border-black/5 flex items-center justify-center opacity-10">
+          <div className="mt-24 h-64 border-t border-white/5 flex items-center justify-center opacity-10 text-white">
             <span className="text-sm font-bold tracking-[1em]">RECONSTRUCTION_COMPLETE</span>
           </div>
         </div>
