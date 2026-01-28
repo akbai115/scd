@@ -26,7 +26,7 @@ import { useSiteContent } from './src/hooks/useSiteContent';
 import { ArrivalBackground } from './components/ArrivalBackground';
 import { DigitalStaticOverlay } from './components/DigitalStaticOverlay';
 import { WatcherEye } from './components/WatcherEye';
-import { Stadium } from './components/Stadium';
+import { StadiumWidget } from './components/StadiumWidget';
 
 const App: React.FC = () => {
   const { headerText, footerText, leftManifesto, centerManifesto, rightManifesto } = useSiteContent();
@@ -371,7 +371,6 @@ const App: React.FC = () => {
               <color attach="background" args={['#FFFFFF']} />
               <ambientLight intensity={0.2} />
               <pointLight position={[0, 0, 10]} intensity={2.0} />
-              <Stadium />
               <FabricPlane
                 onVelocityChange={setMouseVelocity}
                 audioVolume={audioVolume}
@@ -395,6 +394,9 @@ const App: React.FC = () => {
 
             {/* LEFT NOTEPAD */}
             <Notepad />
+
+            {/* STADIUM WIDGET */}
+            <StadiumWidget />
 
             {/* HIM FIGURE */}
             <HimFigure />
