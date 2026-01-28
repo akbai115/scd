@@ -75,6 +75,12 @@ const App: React.FC = () => {
   const [bannerText, setBannerText] = useState('TBA');
   const [isLoading, setIsLoading] = useState(true);
 
+  // Admin Event States
+  const [isShaking, setIsShaking] = useState(false);
+  const [isInverted, setIsInverted] = useState(false);
+  const [isBlackout, setIsBlackout] = useState(false);
+  const [isFlash, setIsFlash] = useState(false);
+
   // SUPABASE REALTIME SUBSCRIPTION
   useEffect(() => {
     // 1. Initial fetch for latest banner
@@ -244,6 +250,26 @@ const App: React.FC = () => {
       return;
     }
 
+    // CHECK FOR ADMIN EVENTS
+    if (message === 'SEISMIC') {
+      setIsShaking(true);
+      setTimeout(() => setIsShaking(false), 2000);
+      return;
+    }
+    if (message === 'INVERT') {
+      setIsInverted(prev => !prev);
+      return;
+    }
+    if (message === 'BLACKOUT') {
+      setIsBlackout(prev => !prev);
+      return;
+    }
+    if (message === 'FLASH') {
+      setIsFlash(true);
+      setTimeout(() => setIsFlash(false), 200);
+      return;
+    }
+
     setActiveTransmission(null);
     setActiveImage(null);
     setIsDissolving(false);
@@ -280,7 +306,13 @@ const App: React.FC = () => {
       {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
 
       <div
-        className={`relative w-full h-screen bg-[#F2F2F2] overflow-hidden select-none transition-all duration-2000 ${isGlitching ? 'grayscale contrast-[105%] blur-[12px] brightness-[0.95]' : ''}`}
+        className={`relative w-full h-screen bg-[#F2F2F2] overflow-hidden select-none transition-all duration-2000 
+          ${isGlitching ? 'grayscale contrast-[105%] blur-[12px] brightness-[0.95]' : ''}
+          ${isShaking ? 'animate-shake' : ''}
+          ${isInverted ? 'invert' : ''}
+          ${isBlackout ? 'brightness-0' : ''}
+          ${isFlash ? 'brightness-[2.0] bg-white' : ''}
+        `}
         onMouseDown={handleStartInteraction}
         onMouseUp={handleEndInteraction}
         onTouchStart={handleStartInteraction}
@@ -517,6 +549,24 @@ const App: React.FC = () => {
           text-shadow: 1px 1px 0px rgba(255,255,255,0.6), -1px -1px 0px rgba(0,0,0,0.02);
         }
         .tracking-tightest { letter-spacing: -0.15em; }
+        
+        @keyframes shake {
+          0% { transform: translate(1px, 1px) rotate(0deg); }
+          10% { transform: translate(-1px, -2px) rotate(-1deg); }
+          20% { transform: translate(-3px, 0px) rotate(1deg); }
+          30% { transform: translate(3px, 2px) rotate(0deg); }
+          40% { transform: translate(1px, -1px) rotate(1deg); }
+          50% { transform: translate(-1px, 2px) rotate(-1deg); }
+          60% { transform: translate(-3px, 1px) rotate(0deg); }
+          70% { transform: translate(3px, 1px) rotate(-1deg); }
+          80% { transform: translate(-1px, -1px) rotate(1deg); }
+          90% { transform: translate(1px, 2px) rotate(0deg); }
+          100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+        .animate-shake {
+          animation: shake 0.5s;
+          animation-iteration-count: infinite;
+        }
       `}</style>
       </div>
     </>

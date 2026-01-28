@@ -144,6 +144,18 @@ export const Admin: React.FC<AdminProps> = ({ onTransmit, onBannerUpdate, curren
                     <button onClick={handleBannerUpdate} className="px-4 bg-white/10 text-[10px] font-bold uppercase hover:bg-white/20">UPDATE</button>
                   </div>
                 </div>
+
+                <div className="w-full h-[1px] bg-white/10" />
+
+                <div className="flex flex-col gap-4">
+                  <label className="text-[10px] uppercase opacity-50 tracking-widest">LIVE_EVENTS</label>
+                  <div className="grid grid-cols-2 gap-4">
+                    <button onClick={() => onTransmit('SEISMIC')} className="py-3 border border-white/20 hover:bg-white hover:text-black text-[10px] font-bold uppercase tracking-widest">SEISMIC_SHAKE</button>
+                    <button onClick={() => onTransmit('FLASH')} className="py-3 border border-white/20 hover:bg-white hover:text-black text-[10px] font-bold uppercase tracking-widest">FLASH_BANG</button>
+                    <button onClick={() => onTransmit('INVERT')} className="py-3 border border-white/20 hover:bg-white hover:text-black text-[10px] font-bold uppercase tracking-widest">TOGGLE_INVERT</button>
+                    <button onClick={() => onTransmit('BLACKOUT')} className="py-3 border border-white/20 hover:bg-black hover:text-white bg-white text-black text-[10px] font-bold uppercase tracking-widest">TOGGLE_BLACKOUT</button>
+                  </div>
+                </div>
               </div>
             )}
 
