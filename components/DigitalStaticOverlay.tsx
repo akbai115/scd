@@ -1,39 +1,39 @@
 import React from 'react';
 
 export const DigitalStaticOverlay: React.FC = () => {
-    return (
-        <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-            {/* 1. SOFT MONOCHROME STATIC */}
-            <div className="absolute inset-0 opacity-[0.08] mix-blend-overlay">
-                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] animate-noise" />
-            </div>
+  return (
+    <div className="fixed inset-0 pointer-events-none z-[30] overflow-hidden">
+      {/* 1. SOFT MONOCHROME STATIC */}
+      <div className="absolute inset-0 opacity-[0.08] mix-blend-overlay">
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] animate-noise" />
+      </div>
 
-            {/* 2. FAINT CROSS-PATTERN GRID */}
-            <div
-                className="absolute inset-0 opacity-[0.15]"
-                style={{
-                    backgroundImage: `
+      {/* 2. FAINT CROSS-PATTERN GRID */}
+      <div
+        className="absolute inset-0 opacity-[0.15]"
+        style={{
+          backgroundImage: `
             radial-gradient(circle, #000 1px, transparent 1px)
           `,
-                    backgroundSize: '40px 40px',
-                    backgroundPosition: '0 0'
-                }}
-            />
+          backgroundSize: '40px 40px',
+          backgroundPosition: '0 0'
+        }}
+      />
 
-            {/* CROSSES TEXTURE */}
-            <div
-                className="absolute inset-0 opacity-[0.05]"
-                style={{
-                    backgroundImage: `linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)`,
-                    backgroundSize: '80px 80px'
-                }}
-            />
+      {/* CROSSES TEXTURE */}
+      <div
+        className="absolute inset-0 opacity-[0.05]"
+        style={{
+          backgroundImage: `linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)`,
+          backgroundSize: '80px 80px'
+        }}
+      />
 
 
-            {/* 3. GENTLE IRREGULAR FLICKER */}
-            <div className="absolute inset-0 bg-white/20 animate-flicker mix-blend-overlay pointer-events-none" />
+      {/* 3. GENTLE IRREGULAR FLICKER */}
+      <div className="absolute inset-0 bg-white/20 animate-flicker mix-blend-overlay pointer-events-none" />
 
-            <style>{`
+      <style>{`
         @keyframes noise {
           0%, 100% { transform: translate(0, 0); }
           10% { transform: translate(-5%, -5%); }
@@ -67,6 +67,6 @@ export const DigitalStaticOverlay: React.FC = () => {
           animation: flicker 4s infinite;
         }
       `}</style>
-        </div>
-    );
+    </div>
+  );
 };

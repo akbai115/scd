@@ -348,8 +348,7 @@ const App: React.FC = () => {
 
         <div className="fixed inset-0 pointer-events-none z-[2000] opacity-[0.05] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
 
-        {/* DIGITAL STATIC OVERLAY - Digital Feed Aesthetics */}
-        <DigitalStaticOverlay />
+
 
         <div className={`absolute inset-0 z-10 pointer-events-none bg-gradient-to-b from-white/30 via-transparent to-white/50 backdrop-blur-[4px] transition-opacity duration-[4000ms] ${isSynced ? 'opacity-100' : 'opacity-0'}`} />
 
