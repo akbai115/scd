@@ -17,7 +17,7 @@ export const Vlinkjn: React.FC = () => {
                 loop
                 muted
                 playsInline
-                className="absolute inset-0 w-64 h-auto md:w-96 object-cover mix-blend-screen opacity-60 z-20 animate-pulse"
+                className="w-64 h-auto md:w-96 drop-shadow-2xl opacity-90 relative z-20"
             />
         </div>
     );
