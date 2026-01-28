@@ -32,7 +32,8 @@ import { StadiumWidget } from './components/StadiumWidget';
 import { CrackOverlay } from './components/CrackOverlay';
 import { FloatingSubs } from './components/FloatingSubs';
 import { CrescentMoon } from './components/CrescentMoon';
-import { FlamesOverlay } from './components/FlamesOverlay';
+import { GoldenKey } from './components/GoldenKey';
+import { Environment } from '@react-three/drei';
 
 
 const App: React.FC = () => {
@@ -401,6 +402,19 @@ const App: React.FC = () => {
               />
             </Canvas>
 
+            {/* FOREGROUND GOLDEN KEY CANVAS - High Z-Index for visibility */}
+            <Canvas
+              camera={{ position: [0, 0, 5], fov: 75 }}
+              style={{ width: '100vw', height: '100vh', position: 'absolute', top: 0, left: 0, zIndex: 50, pointerEvents: 'none' }}
+              dpr={[1, typeof window !== 'undefined' && window.innerWidth < 768 ? 1 : 1.5]}
+              gl={{ alpha: true }}
+            >
+              <ambientLight intensity={0.8} />
+              <pointLight position={[10, 10, 10]} intensity={1.5} />
+              <Environment preset="city" />
+              <GoldenKey />
+            </Canvas>
+
             {/* ARRIVAL BACKGROUND SCROLL */}
             <ArrivalBackground />
 
@@ -433,8 +447,7 @@ const App: React.FC = () => {
             {/* CRESCENT MOON - Top left corner */}
             <CrescentMoon />
 
-            {/* FLAMES OVERLAY - Bottom of screen */}
-            <FlamesOverlay />
+            {/* FLAMES OVERLAY - REMOVED */}
 
             {/* STORM OVERLAY - PAUSED */}
             {/* <StormOverlay /> */}
