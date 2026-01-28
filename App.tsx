@@ -25,6 +25,7 @@ import { useSiteContent } from './src/hooks/useSiteContent';
 
 import { ArrivalBackground } from './components/ArrivalBackground';
 import { DigitalStaticOverlay } from './components/DigitalStaticOverlay';
+import { WatcherEye } from './components/WatcherEye';
 
 const App: React.FC = () => {
   const { headerText, footerText, leftManifesto, centerManifesto, rightManifesto } = useSiteContent();
@@ -433,7 +434,12 @@ const App: React.FC = () => {
                     {/* Subheader removed for silence */}
                   </div>
 
-                  <h1 className="times-bold text-6xl md:text-9xl tracking-tighter uppercase text-black -translate-y-24 md:-translate-y-48 mix-blend-difference z-[100] pointer-events-none">
+                  {/* WATCHER EYE */}
+                  <div className="-translate-y-24 md:-translate-y-48 z-[120]">
+                    <WatcherEye mousePos={mousePos} />
+                  </div>
+
+                  <h1 className="times-bold text-6xl md:text-9xl tracking-tighter uppercase text-black -translate-y-24 md:-translate-y-48 mix-blend-difference z-[100] pointer-events-none mt-4">
                     THE ARK
                   </h1>
                   <Vlinkjn />
