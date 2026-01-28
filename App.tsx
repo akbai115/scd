@@ -13,6 +13,7 @@ import { LoadingScreen } from './components/LoadingScreen';
 import { FileManager } from './components/FileManager';
 import { IntroAnimation } from './components/IntroAnimation';
 import { Notepad } from './components/Notepad';
+import { HimFigure } from './components/HimFigure';
 import { Events } from './Events';
 import { LiveStream } from './components/LiveStream';
 import { supabase } from './src/lib/supabase';
@@ -326,6 +327,9 @@ const App: React.FC = () => {
 
             {/* LEFT NOTEPAD */}
             <Notepad />
+
+            {/* HIM FIGURE */}
+            <HimFigure />
 
             {/* GLOBAL BANNER - UNDER NAVBAR */}
             {/* GLOBAL BANNER - UNDER NAVBAR */}
