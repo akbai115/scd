@@ -25,6 +25,7 @@ import { useSiteContent } from './src/hooks/useSiteContent';
 
 import { ArrivalBackground } from './components/ArrivalBackground';
 import { DigitalStaticOverlay } from './components/DigitalStaticOverlay';
+import { CymaticsBackground } from './components/CymaticsBackground';
 
 import { StadiumWidget } from './components/StadiumWidget';
 
@@ -353,9 +354,12 @@ const App: React.FC = () => {
         >
           <source src="/ARK.mp4" type="video/mp4" />
         </video>
+
+        {/* CYMATICS ANIMATION - Above video, below content */}
+        <CymaticsBackground audioVolume={audioVolume} />
         {/* PHASE 2 HEADER */}
         <div className="absolute top-4 left-0 right-0 flex justify-center z-[2000] pointer-events-none">
-          <h1 className="text-red-600 font-black text-xl tracking-[0.5em] uppercase animate-pulse">{headerText}</h1>
+          <h1 className="text-white font-black text-xl tracking-[0.5em] uppercase animate-pulse">{headerText}</h1>
         </div>
 
 
@@ -412,26 +416,26 @@ const App: React.FC = () => {
             {/* HIM FIGURE */}
             <HimFigure />
 
-            {/* STORM OVERLAY - ENABLED */}
-            <StormOverlay />
+            {/* STORM OVERLAY - PAUSED */}
+            {/* <StormOverlay /> */}
 
             {/* GLOBAL BANNER - UNDER NAVBAR */}
             {/* GLOBAL BANNER - UNDER NAVBAR */}
             <div className="absolute top-40 left-0 right-0 flex justify-center z-[100] pointer-events-none">
-              <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-black/80 animate-pulse">{bannerText}</span>
+              <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-white/80 animate-pulse">{bannerText}</span>
             </div>
 
             <div className="absolute top-0 left-0 right-0 h-48 flex items-center justify-center z-[100] pointer-events-none">
-              <nav className="flex flex-row gap-12 md:gap-24 text-[10px] font-black tracking-[0.5em] uppercase pointer-events-auto items-center text-black">
+              <nav className="flex flex-row gap-12 md:gap-24 text-[10px] font-black tracking-[0.5em] uppercase pointer-events-auto items-center text-white">
                 {(['YZY', 'THE_ARK', 'STILL', 'FILES', 'EVENTS', 'LIVE'] as View[]).map((v) => (
                   <button
                     key={v}
                     onClick={(e) => { e.stopPropagation(); setView(v); setClickTrigger(t => t + 1); }}
                     className={`transition-all duration-300 hover:scale-105 active:scale-95 border-b-2 border-transparent hover:border-black
-                      ${(v === 'EVENTS' || v === 'LIVE' || v === 'THE_ARK') ? 'text-red-600 hover:text-red-500' : 'hover:text-black'}
+                      ${(v === 'EVENTS' || v === 'LIVE' || v === 'THE_ARK') ? 'text-red-600 hover:text-red-500' : 'hover:text-white'}
                       ${v === 'THE_ARK' ? 'animate-pulse drop-shadow-[0_0_8px_rgba(220,38,38,0.8)]' : ''}
                       ${view === v
-                        ? (v === 'EVENTS' || v === 'LIVE' || v === 'THE_ARK' ? 'opacity-100 border-red-600' : 'opacity-100 border-black')
+                        ? (v === 'EVENTS' || v === 'LIVE' || v === 'THE_ARK' ? 'opacity-100 border-red-600' : 'opacity-100 border-white')
                         : 'opacity-40 hover:opacity-100'
                       }`}
                   >
@@ -445,7 +449,7 @@ const App: React.FC = () => {
 
             <div className="absolute inset-0 pointer-events-none z-50">
               {view === 'YZY' && (
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-black transition-all duration-[3000ms]">
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-white transition-all duration-[3000ms]">
                   <div className="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-[16rem] flex flex-col items-center">
                     {/* Subheader removed for silence */}
                   </div>
@@ -523,9 +527,9 @@ const App: React.FC = () => {
                         href="https://twitter.com/intent/tweet?text=%24yzyark%2054F9DbbQqZJKQdweH8WnwBEa8MWVNhUUdP3NJFREpump"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-[10px] font-mono font-bold text-black hover:text-black/70 transition-colors uppercase tracking-widest group"
+                        className="flex items-center gap-2 text-[10px] font-mono font-bold text-white hover:text-white/70 transition-colors uppercase tracking-widest group"
                       >
-                        <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-black group-hover:text-black/70 transition-colors">
+                        <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-white group-hover:text-white/70 transition-colors">
                           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                         </svg>
                         POST $YZYARK
@@ -534,11 +538,11 @@ const App: React.FC = () => {
 
                     <div className="flex flex-col items-center gap-6 mt-8 opacity-90 mix-blend-difference pointer-events-none">
                       {centerManifesto.map((line, i) => (
-                        <p key={i} className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">{line}</p>
+                        <p key={i} className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-white">{line}</p>
                       ))}
                     </div>
 
-                    <div className="absolute bottom-32 text-[10px] font-black tracking-[1.5em] text-black uppercase">{footerText}</div>
+                    <div className="absolute bottom-32 text-[10px] font-black tracking-[1.5em] text-white uppercase">{footerText}</div>
                   </div>
 
                   {/* BOTTOM LEFT CA LINK & SPOTIFY */}
@@ -548,7 +552,7 @@ const App: React.FC = () => {
                       href="https://pump.fun/profile/yz0"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[10px] font-mono font-bold text-black/50 hover:text-black transition-colors uppercase tracking-widest"
+                      className="text-[10px] font-mono font-bold text-white/50 hover:text-white transition-colors uppercase tracking-widest"
                     >
                       CA: 54F9DbbQqZJKQdweH8WnwBEa8MWVNhUUdP3NJFREpump
                     </a>
@@ -559,7 +563,7 @@ const App: React.FC = () => {
                   {/* RIGHT SIDE MANIFESTO */}
                   <div className="absolute right-8 md:right-16 top-1/2 -translate-y-1/2 flex flex-col items-end text-right gap-4 pointer-events-none z-10">
                     {rightManifesto.map((line, i) => (
-                      <p key={i} className="text-[12px] font-black tracking-[0.1em] uppercase text-black">
+                      <p key={i} className="text-[12px] font-black tracking-[0.1em] uppercase text-white">
                         {line.includes('54F9') ? (
                           <>
                             {line.split('54F9')[0]}
@@ -574,7 +578,7 @@ const App: React.FC = () => {
                   {/* LEFT SIDE MESSAGE */}
                   <div className="absolute left-4 md:left-16 top-1/2 -translate-y-1/2 hidden md:flex flex-col items-start text-left gap-4 pointer-events-none z-10">
                     {leftManifesto.map((line, i) => (
-                      <p key={i} className="text-[12px] font-black tracking-[0.1em] uppercase text-black">{line}</p>
+                      <p key={i} className="text-[12px] font-black tracking-[0.1em] uppercase text-white">{line}</p>
                     ))}
                   </div>
 
@@ -582,7 +586,7 @@ const App: React.FC = () => {
               )}
 
               {view === 'STILL' && (
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-black transition-all duration-[3000ms] gap-6">
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-white transition-all duration-[3000ms] gap-6">
                   <h2 className="times-bold text-4xl md:text-8xl tracking-[0.4em] opacity-60 uppercase blur-[0.5px]">IN A PERFECT WORLD</h2>
                   <div className="text-center">
                     <span className="text-[11px] font-bold tracking-[1.5em] uppercase opacity-50">TBA</span>
@@ -623,10 +627,18 @@ const App: React.FC = () => {
 
 
 
-            <AudioEngine
+            {/* HUM AUDIO - replaces procedural AudioEngine */}
+            {isStarted && (
+              <audio autoPlay loop preload="auto" style={{ display: 'none' }}>
+                <source src="/humnew.wav" type="audio/wav" />
+              </audio>
+            )}
+
+            {/* AUDIO ENGINE - DISABLED, replaced by humnew.wav */}
+            {/* <AudioEngine
               mouseVelocity={mouseVelocity} isStarted={isStarted} activeView={view} stems={stems}
               transmissionTrigger={transmissionTrigger} clickTrigger={clickTrigger} isTransmissionActive={activeTransmission !== null} isSpamming={isSpamming}
-            />
+            /> */}
           </>
         )}
 
