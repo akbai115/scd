@@ -14,7 +14,7 @@ import { FileManager } from './components/FileManager';
 import { IntroAnimation } from './components/IntroAnimation';
 import { Notepad } from './components/Notepad';
 import { HimFigure } from './components/HimFigure';
-// import { StormOverlay } from './components/StormOverlay';
+import { StormOverlay } from './components/StormOverlay';
 import { Events } from './Events';
 import { LiveStream } from './components/LiveStream';
 import { supabase } from './src/lib/supabase';
@@ -25,8 +25,9 @@ import { useSiteContent } from './src/hooks/useSiteContent';
 
 import { ArrivalBackground } from './components/ArrivalBackground';
 import { DigitalStaticOverlay } from './components/DigitalStaticOverlay';
-import { WatcherEye } from './components/WatcherEye';
+
 import { StadiumWidget } from './components/StadiumWidget';
+
 
 const App: React.FC = () => {
   const { headerText, footerText, leftManifesto, centerManifesto, rightManifesto } = useSiteContent();
@@ -328,7 +329,7 @@ const App: React.FC = () => {
       {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
 
       <div
-        className={`relative w-full h-screen bg-white overflow-hidden select-none transition-all duration-2000 
+        className={`relative w-full h-screen bg-black overflow-hidden select-none transition-all duration-2000 
           ${isGlitching ? 'grayscale contrast-[105%] blur-[12px] brightness-[0.95]' : ''}
           ${isShaking ? 'animate-shake' : ''}
           ${isInverted ? 'invert' : ''}
@@ -342,6 +343,16 @@ const App: React.FC = () => {
         onTouchStart={handleStartInteraction}
         onTouchEnd={handleEndInteraction}
       >
+        {/* BACKGROUND VIDEO */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-[40] opacity-60"
+        >
+          <source src="/ARK.mp4" type="video/mp4" />
+        </video>
         {/* PHASE 2 HEADER */}
         <div className="absolute top-4 left-0 right-0 flex justify-center z-[2000] pointer-events-none">
           <h1 className="text-red-600 font-black text-xl tracking-[0.5em] uppercase animate-pulse">{headerText}</h1>
@@ -367,8 +378,8 @@ const App: React.FC = () => {
           </div>
         ) : (
           <>
-            <Canvas camera={{ position: [0, 0, 5], fov: 75 }} style={{ width: '100vw', height: '100vh', position: 'absolute', top: 0, left: 0 }} dpr={[1, typeof window !== 'undefined' && window.innerWidth < 768 ? 1 : 1.5]}>
-              <color attach="background" args={['#FFFFFF']} />
+            <Canvas camera={{ position: [0, 0, 5], fov: 75 }} style={{ width: '100vw', height: '100vh', position: 'absolute', top: 0, left: 0, zIndex: 10 }} dpr={[1, typeof window !== 'undefined' && window.innerWidth < 768 ? 1 : 1.5]}>
+              {/* <color attach="background" args={['#FFFFFF']} /> REPLACED BY VIDEO */}
               <ambientLight intensity={0.2} />
               <pointLight position={[0, 0, 10]} intensity={2.0} />
               <FabricPlane
@@ -401,8 +412,8 @@ const App: React.FC = () => {
             {/* HIM FIGURE */}
             <HimFigure />
 
-            {/* STORM OVERLAY - DISABLED */}
-            {/* <StormOverlay /> */}
+            {/* STORM OVERLAY - ENABLED */}
+            <StormOverlay />
 
             {/* GLOBAL BANNER - UNDER NAVBAR */}
             {/* GLOBAL BANNER - UNDER NAVBAR */}
@@ -439,14 +450,70 @@ const App: React.FC = () => {
                     {/* Subheader removed for silence */}
                   </div>
 
-                  {/* WATCHER EYE */}
-                  <div className="-translate-y-24 md:-translate-y-48 z-[120]">
-                    <WatcherEye mousePos={mousePos} />
+
+
+                  <div className="relative -translate-y-24 md:-translate-y-48 z-[100] mt-4 pointer-events-none w-fit mx-auto">
+                    <img
+                      src="/theark.png"
+                      alt="THE ARK"
+                      className="w-96 md:w-[45rem] h-auto object-contain relative z-10"
+                    />
+                    {/* SHINE EFFECT */}
+                    {/* Mask Container - Stationary */}
+                    <div className="absolute inset-0 z-20 w-full h-full mask-logo">
+                      {/* Animated Gradient */}
+                      <div className="w-[200%] h-full bg-gradient-to-r from-transparent via-white/80 to-transparent skew-x-[-20deg] animate-shiny-sweep absolute top-0 -left-[100%]" />
+                    </div>
+                    <style>{`
+                      .mask-logo {
+                        mask-image: url("/theark.png");
+                        mask-size: contain;
+                        mask-repeat: no-repeat;
+                        mask-position: center;
+                        -webkit-mask-image: url("/theark.png");
+                        -webkit-mask-size: contain;
+                        -webkit-mask-repeat: no-repeat;
+                        -webkit-mask-position: center;
+                      }
+                      @keyframes shiny-sweep {
+                        0% { transform: translateX(0%); }
+                        20% { transform: translateX(100%); }
+                        100% { transform: translateX(100%); }
+                      }
+                      .animate-shiny-sweep {
+                        animation: shiny-sweep 5s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+                        background: linear-gradient(
+                          90deg, 
+                          transparent 0%, 
+                          rgba(255, 255, 255, 0.0) 40%, 
+                          rgba(255, 255, 255, 0.9) 50%, 
+                          rgba(255, 255, 255, 0.0) 60%, 
+                          transparent 100%
+                        );
+                      }
+                    `}</style>
                   </div>
 
-                  <h1 className="times-bold text-6xl md:text-9xl tracking-tighter uppercase text-black -translate-y-24 md:-translate-y-48 mix-blend-difference z-[100] pointer-events-none mt-4">
-                    THE ARK
-                  </h1>
+                  {/* MINIMALISTIC BOAT SVG */}
+                  <div className="absolute top-[35%] md:top-[30%] z-[90] pointer-events-none animate-float opacity-80 mt-12 md:mt-24">
+                    <svg width="60" height="30" viewBox="0 0 100 50" className="drop-shadow-lg">
+                      {/* Hull */}
+                      <path d="M10,20 L25,45 L75,45 L90,20 Z" fill="black" />
+                      {/* Cabin/Details - minimal */}
+                      <rect x="35" y="5" width="30" height="15" fill="black" />
+                      <rect x="42" y="0" width="16" height="5" fill="black" />
+                    </svg>
+                    <style>{`
+                          @keyframes float {
+                              0%, 100% { transform: translateY(0) rotate(0deg); }
+                              50% { transform: translateY(-5px) rotate(1deg); }
+                          }
+                          .animate-float {
+                              animation: float 4s ease-in-out infinite;
+                          }
+                      `}</style>
+                  </div>
+
                   <Vlinkjn />
 
                   {/* LINKS REPLACING MANIFESTO */}
@@ -588,6 +655,7 @@ const App: React.FC = () => {
         }
       `}</style>
       </div>
+
 
     </>
   );
