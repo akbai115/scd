@@ -69,16 +69,16 @@ export const StormOverlay: React.FC = () => {
                         100% { background-position: 5% 100%; }
                     }
                     .rain-layer {
-                        background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(50,50,50,0.8) 50%, rgba(0,0,0,0) 100%);
+                        background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(50,50,50,0.1) 50%, rgba(0,0,0,0) 100%);
                         background-size: 2px 40px;
                         animation: rain 0.6s linear infinite;
                     }
                 `}
             </style>
             {/* Multiple layers for density */}
-            <div className="absolute inset-0 rain-layer opacity-60"></div>
-            <div className="absolute inset-0 rain-layer opacity-50" style={{ backgroundSize: '2px 30px', animationDuration: '0.4s', animationDirection: 'normal', animationDelay: '-0.2s' }}></div>
-            <div className="absolute inset-0 rain-layer opacity-40" style={{ backgroundSize: '3px 50px', animationDuration: '0.5s', animationDirection: 'reverse' }}></div>
+            <div className="absolute inset-0 rain-layer opacity-10"></div>
+            <div className="absolute inset-0 rain-layer opacity-5" style={{ backgroundSize: '2px 30px', animationDuration: '0.4s', animationDirection: 'normal', animationDelay: '-0.2s' }}></div>
+            <div className="absolute inset-0 rain-layer opacity-5" style={{ backgroundSize: '3px 50px', animationDuration: '0.5s', animationDirection: 'reverse' }}></div>
 
             {/* LIGHTNING FLASH - STRONGER */}
             <div
