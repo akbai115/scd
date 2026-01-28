@@ -277,7 +277,7 @@ const App: React.FC = () => {
       {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
 
       <div
-        className={`relative w-full h-screen bg-[#F2F2F2] overflow-hidden select-none cursor-none transition-all duration-2000 ${isGlitching ? 'grayscale contrast-[105%] blur-[12px] brightness-[0.95]' : ''}`}
+        className={`relative w-full h-screen bg-[#F2F2F2] overflow-hidden select-none transition-all duration-2000 ${isGlitching ? 'grayscale contrast-[105%] blur-[12px] brightness-[0.95]' : ''}`}
         onMouseDown={handleStartInteraction}
         onMouseUp={handleEndInteraction}
         onTouchStart={handleStartInteraction}
@@ -377,6 +377,30 @@ const App: React.FC = () => {
                   <div className="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-[16rem] flex flex-col items-center">
                     {/* Subheader removed for silence */}
                   </div>
+                  <div className="flex flex-col items-center gap-3 -translate-y-24 md:-translate-y-48 z-30 mb-4">
+                    <a
+                      href="https://open.spotify.com/prerelease/4xFs0x8abwU3H9uNRPFRmE"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-[10px] font-mono font-bold text-black/50 hover:text-green-600 transition-colors uppercase tracking-widest group"
+                    >
+                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-black group-hover:text-green-600 transition-colors">
+                        <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
+                      </svg>
+                      PRE-SAVE ON SPOTIFY
+                    </a>
+                    <a
+                      href="https://twitter.com/intent/tweet?text=%24yzyark%2054F9DbbQqZJKQdweH8WnwBEa8MWVNhUUdP3NJFREpump"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-[10px] font-mono font-bold text-black/50 hover:text-black transition-colors uppercase tracking-widest group"
+                    >
+                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-black group-hover:text-black transition-colors">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                      </svg>
+                      POST $YZYARK
+                    </a>
+                  </div>
                   <img
                     src="/by.png"
                     alt="ARK"
@@ -420,17 +444,7 @@ const App: React.FC = () => {
 
                   {/* BOTTOM LEFT CA LINK & SPOTIFY */}
                   <div className="absolute bottom-8 left-8 z-[100] pointer-events-auto flex flex-col items-start gap-4">
-                    <a
-                      href="https://open.spotify.com/prerelease/4xFs0x8abwU3H9uNRPFRmE"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-[10px] font-mono font-bold text-black/50 hover:text-green-600 transition-colors uppercase tracking-widest group"
-                    >
-                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-black group-hover:text-green-600 transition-colors">
-                        <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
-                      </svg>
-                      PRE-SAVE ON SPOTIFY
-                    </a>
+
                     <a
                       href="https://pump.fun/profile/yz0"
                       target="_blank"
@@ -479,48 +493,29 @@ const App: React.FC = () => {
                   {/* LEFT SIDE MESSAGE */}
                   <div className="absolute left-4 md:left-16 top-1/2 -translate-y-1/2 hidden md:flex flex-col items-start text-left gap-8 pointer-events-none z-10">
                     <div className="flex flex-col gap-0">
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">BECAUSE PEOPLE KEEP GRABBING RANDOM PIECES</p>
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">AND CALLING THEM THE WHOLE STORY</p>
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">BUNDLERS TRYING TO FARM THE COMMUNITY</p>
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">WON’T BE REWARDED</p>
                     </div>
 
                     <div className="flex flex-col gap-0">
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">THIS WAS NEVER CHAOS</p>
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">IT WAS A PATTERN</p>
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">NO SHORTCUTS</p>
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">NO EXTRACTION</p>
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">NO FREE RIDE</p>
                     </div>
 
                     <div className="flex flex-col gap-0">
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">I RELEASE FRAGMENTS ON PURPOSE</p>
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">PRESSURE TESTS</p>
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">SIGNAL CHECKS</p>
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">WHO LISTENS VS WHO REACTS</p>
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">THIS ISN’T A LIQUIDITY EVENT</p>
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">IT’S ALIGNMENT</p>
                     </div>
 
                     <div className="flex flex-col gap-0">
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">THIS IS THE FINAL ARC</p>
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">NOT BECAUSE IT’S LOUD</p>
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">BUT BECAUSE IT’S PRECISE</p>
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">IF YOU’RE HERE TO TAKE</p>
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">YOU’LL BE IGNORED</p>
                     </div>
 
                     <div className="flex flex-col gap-0">
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">YOU DON’T GET THE FULL PICTURE BY SCREENSHOTTING MOMENTS</p>
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">YOU GET IT BY WATCHING HOW THEY CONNECT</p>
-                    </div>
-
-                    <div className="flex flex-col gap-0">
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">I WON’T GIVE CLARITY UNTIL THE COMMUNITY SHOWS IT CAN HOLD IT</p>
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">NOT HYPE</p>
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">NOT OUTRAGE</p>
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">UNDERSTANDING</p>
-                    </div>
-
-                    <div className="flex flex-col gap-0">
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">YOU DON’T RISE BY DEMANDING</p>
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">YOU RISE BY TUNING IN</p>
-                    </div>
-
-                    <div className="flex flex-col gap-0">
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">PATTERNS FIRST</p>
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">THEN ASCENT</p>
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">IF YOU’RE HERE TO BUILD</p>
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">YOU’LL BE SEEN</p>
                     </div>
                   </div>
                 </div>
@@ -566,12 +561,7 @@ const App: React.FC = () => {
               )}
             </div>
 
-            <div className="fixed pointer-events-none z-[1100] mix-blend-difference" style={{ left: mousePos.x, top: mousePos.y, transform: 'translate(-50%, -50%)' }}>
-              <div className="w-16 h-16 flex items-center justify-center opacity-10">
-                <div className="absolute w-[0.5px] h-full bg-white scale-y-110"></div>
-                <div className="absolute h-[0.5px] w-full bg-white scale-x-110"></div>
-              </div>
-            </div>
+
 
             <AudioEngine
               mouseVelocity={mouseVelocity} isStarted={isStarted} activeView={view} stems={stems}
