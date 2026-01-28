@@ -275,7 +275,7 @@ const App: React.FC = () => {
       {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
 
       <div
-        className={`relative w-full h-screen bg-[#333333] overflow-hidden select-none cursor-none transition-all duration-2000 ${isGlitching ? 'grayscale contrast-[105%] blur-[12px] brightness-[0.95]' : ''}`}
+        className={`relative w-full h-screen bg-[#FFFFFF] overflow-hidden select-none cursor-none transition-all duration-2000 ${isGlitching ? 'grayscale contrast-[105%] blur-[12px] brightness-[0.95]' : ''}`}
         onMouseDown={handleStartInteraction}
         onMouseUp={handleEndInteraction}
         onTouchStart={handleStartInteraction}
@@ -283,7 +283,7 @@ const App: React.FC = () => {
       >
         <div className="fixed inset-0 pointer-events-none z-[2000] opacity-[0.05] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
 
-        <div className={`absolute inset-0 z-10 pointer-events-none bg-gradient-to-b from-[#333333]/30 via-transparent to-[#333333]/50 backdrop-blur-[4px] transition-opacity duration-[4000ms] ${isSynced ? 'opacity-100' : 'opacity-0'}`} />
+        <div className={`absolute inset-0 z-10 pointer-events-none bg-gradient-to-b from-[#FFFFFF]/30 via-transparent to-[#FFFFFF]/50 backdrop-blur-[4px] transition-opacity duration-[4000ms] ${isSynced ? 'opacity-100' : 'opacity-0'}`} />
 
         {!isSynced ? (
           <div className="absolute inset-0 bg-black z-[1000] flex flex-col items-center justify-center transition-all duration-2000">
@@ -299,7 +299,7 @@ const App: React.FC = () => {
         ) : (
           <>
             <Canvas camera={{ position: [0, 0, 5], fov: 75 }} style={{ width: '100vw', height: '100vh', position: 'absolute', top: 0, left: 0 }} dpr={[1, typeof window !== 'undefined' && window.innerWidth < 768 ? 1 : 1.5]}>
-              <color attach="background" args={['#333333']} />
+              <color attach="background" args={['#FFFFFF']} />
               <ambientLight intensity={0.2} />
               <pointLight position={[0, 0, 10]} intensity={2.0} />
               <FabricPlane
@@ -351,7 +351,7 @@ const App: React.FC = () => {
                   <div className="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-[16rem] flex flex-col items-center">
                     {/* Subheader removed for silence */}
                   </div>
-                  <h1 className="times-bold text-[18rem] md:text-[24rem] tracking-tighter leading-none select-none text-white mt-32 uppercase mix-blend-normal opacity-100 shadow-[0_0_30px_rgba(255,255,255,0.3)]">IAPW</h1>
+                  <h1 className="times-bold text-[18rem] md:text-[24rem] tracking-tighter leading-none select-none text-white mt-32 uppercase mix-blend-normal opacity-100">ARK</h1>
                   <Vlinkjn />
                   <div className="absolute bottom-32 text-[10px] font-black tracking-[1.5em] text-white uppercase">JAN 2026</div>
 

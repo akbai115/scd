@@ -140,7 +140,7 @@ export const fragmentShader = `
   }
 
   void main() {
-    vec3 boneWhite = vec3(0.2, 0.2, 0.2); 
+    vec3 boneWhite = vec3(0.95, 0.95, 0.95); 
     
     if(uIsHolyHour) {
         boneWhite = mix(boneWhite, vec3(0.1, 0.1, 0.1), 0.05);
