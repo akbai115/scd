@@ -414,12 +414,13 @@ const App: React.FC = () => {
                     onClick={(e) => { e.stopPropagation(); setView(v); setClickTrigger(t => t + 1); }}
                     className={`transition-all duration-300 hover:scale-105 active:scale-95 border-b-2 border-transparent hover:border-black
                       ${(v === 'EVENTS' || v === 'LIVE') ? 'text-red-600 hover:text-red-500' : 'hover:text-black'}
+                      ${v === 'THE_ARK' ? 'animate-pulse' : ''}
                       ${view === v
                         ? (v === 'EVENTS' || v === 'LIVE' ? 'opacity-100 border-red-600' : 'opacity-100 border-black')
                         : 'opacity-40 hover:opacity-100'
                       }`}
                   >
-                    {v === 'YZY' ? 'IAPW' : v}
+                    {v === 'YZY' ? 'HOME' : v}
                   </button>
                 ))}
               </nav>
