@@ -24,6 +24,7 @@ export type View = 'YZY' | 'THE_ARK' | 'STILL' | 'ADMIN' | 'FILES' | 'EVENTS' | 
 import { useSiteContent } from './src/hooks/useSiteContent';
 
 import { ArrivalBackground } from './components/ArrivalBackground';
+import { DigitalStaticOverlay } from './components/DigitalStaticOverlay';
 
 const App: React.FC = () => {
   const { headerText, footerText, leftManifesto, centerManifesto, rightManifesto } = useSiteContent();
@@ -325,7 +326,7 @@ const App: React.FC = () => {
       {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
 
       <div
-        className={`relative w-full h-screen bg-[#EBE9E4] overflow-hidden select-none transition-all duration-2000 
+        className={`relative w-full h-screen bg-white overflow-hidden select-none transition-all duration-2000 
           ${isGlitching ? 'grayscale contrast-[105%] blur-[12px] brightness-[0.95]' : ''}
           ${isShaking ? 'animate-shake' : ''}
           ${isInverted ? 'invert' : ''}
@@ -347,7 +348,10 @@ const App: React.FC = () => {
 
         <div className="fixed inset-0 pointer-events-none z-[2000] opacity-[0.05] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
 
-        <div className={`absolute inset-0 z-10 pointer-events-none bg-gradient-to-b from-[#F2F2F2]/30 via-transparent to-[#F2F2F2]/50 backdrop-blur-[4px] transition-opacity duration-[4000ms] ${isSynced ? 'opacity-100' : 'opacity-0'}`} />
+        {/* DIGITAL STATIC OVERLAY - Digital Feed Aesthetics */}
+        <DigitalStaticOverlay />
+
+        <div className={`absolute inset-0 z-10 pointer-events-none bg-gradient-to-b from-white/30 via-transparent to-white/50 backdrop-blur-[4px] transition-opacity duration-[4000ms] ${isSynced ? 'opacity-100' : 'opacity-0'}`} />
 
         {!isSynced ? (
           <div className="absolute inset-0 bg-black z-[1000] flex flex-col items-center justify-center transition-all duration-2000">
@@ -363,7 +367,7 @@ const App: React.FC = () => {
         ) : (
           <>
             <Canvas camera={{ position: [0, 0, 5], fov: 75 }} style={{ width: '100vw', height: '100vh', position: 'absolute', top: 0, left: 0 }} dpr={[1, typeof window !== 'undefined' && window.innerWidth < 768 ? 1 : 1.5]}>
-              <color attach="background" args={['#EBE9E4']} />
+              <color attach="background" args={['#FFFFFF']} />
               <ambientLight intensity={0.2} />
               <pointLight position={[0, 0, 10]} intensity={2.0} />
               <FabricPlane
@@ -396,19 +400,19 @@ const App: React.FC = () => {
             {/* GLOBAL BANNER - UNDER NAVBAR */}
             {/* GLOBAL BANNER - UNDER NAVBAR */}
             <div className="absolute top-40 left-0 right-0 flex justify-center z-[100] pointer-events-none">
-              <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-white/80 animate-pulse">{bannerText}</span>
+              <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-black/80 animate-pulse">{bannerText}</span>
             </div>
 
             <div className="absolute top-0 left-0 right-0 h-48 flex items-center justify-center z-[100] pointer-events-none">
-              <nav className="flex flex-row gap-12 md:gap-24 text-[10px] font-black tracking-[0.5em] uppercase pointer-events-auto items-center text-white">
+              <nav className="flex flex-row gap-12 md:gap-24 text-[10px] font-black tracking-[0.5em] uppercase pointer-events-auto items-center text-black">
                 {(['YZY', 'THE_ARK', 'STILL', 'FILES', 'EVENTS', 'LIVE'] as View[]).map((v) => (
                   <button
                     key={v}
                     onClick={(e) => { e.stopPropagation(); setView(v); setClickTrigger(t => t + 1); }}
-                    className={`transition-all duration-300 hover:scale-105 active:scale-95 border-b-2 border-transparent hover:border-white
-                      ${(v === 'EVENTS' || v === 'LIVE') ? 'text-red-600 hover:text-red-500' : 'hover:text-white'}
+                    className={`transition-all duration-300 hover:scale-105 active:scale-95 border-b-2 border-transparent hover:border-black
+                      ${(v === 'EVENTS' || v === 'LIVE') ? 'text-red-600 hover:text-red-500' : 'hover:text-black'}
                       ${view === v
-                        ? (v === 'EVENTS' || v === 'LIVE' ? 'opacity-100 border-red-600' : 'opacity-100 border-white')
+                        ? (v === 'EVENTS' || v === 'LIVE' ? 'opacity-100 border-red-600' : 'opacity-100 border-black')
                         : 'opacity-40 hover:opacity-100'
                       }`}
                   >
@@ -422,7 +426,7 @@ const App: React.FC = () => {
 
             <div className="absolute inset-0 pointer-events-none z-50">
               {view === 'YZY' && (
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-white transition-all duration-[3000ms]">
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-black transition-all duration-[3000ms]">
                   <div className="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-[16rem] flex flex-col items-center">
                     {/* Subheader removed for silence */}
                   </div>
@@ -439,9 +443,9 @@ const App: React.FC = () => {
                         href="https://open.spotify.com/prerelease/4xFs0x8abwU3H9uNRPFRmE"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-[10px] font-mono font-bold text-white hover:text-green-600 transition-colors uppercase tracking-widest group"
+                        className="flex items-center gap-2 text-[10px] font-mono font-bold text-black hover:text-green-600 transition-colors uppercase tracking-widest group"
                       >
-                        <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-white group-hover:text-green-600 transition-colors">
+                        <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-black group-hover:text-green-600 transition-colors">
                           <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
                         </svg>
                         PRE-SAVE ON SPOTIFY
@@ -450,9 +454,9 @@ const App: React.FC = () => {
                         href="https://twitter.com/intent/tweet?text=%24yzyark%2054F9DbbQqZJKQdweH8WnwBEa8MWVNhUUdP3NJFREpump"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-[10px] font-mono font-bold text-white hover:text-white/70 transition-colors uppercase tracking-widest group"
+                        className="flex items-center gap-2 text-[10px] font-mono font-bold text-black hover:text-black/70 transition-colors uppercase tracking-widest group"
                       >
-                        <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-white group-hover:text-white/70 transition-colors">
+                        <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-black group-hover:text-black/70 transition-colors">
                           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                         </svg>
                         POST $YZYARK
@@ -461,11 +465,11 @@ const App: React.FC = () => {
 
                     <div className="flex flex-col items-center gap-6 mt-8 opacity-90 mix-blend-difference pointer-events-none">
                       {centerManifesto.map((line, i) => (
-                        <p key={i} className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-white">{line}</p>
+                        <p key={i} className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">{line}</p>
                       ))}
                     </div>
 
-                    <div className="absolute bottom-32 text-[10px] font-black tracking-[1.5em] text-white uppercase">{footerText}</div>
+                    <div className="absolute bottom-32 text-[10px] font-black tracking-[1.5em] text-black uppercase">{footerText}</div>
                   </div>
 
                   {/* BOTTOM LEFT CA LINK & SPOTIFY */}
@@ -501,7 +505,7 @@ const App: React.FC = () => {
                   {/* LEFT SIDE MESSAGE */}
                   <div className="absolute left-4 md:left-16 top-1/2 -translate-y-1/2 hidden md:flex flex-col items-start text-left gap-4 pointer-events-none z-10">
                     {leftManifesto.map((line, i) => (
-                      <p key={i} className="text-[12px] font-black tracking-[0.1em] uppercase text-white">{line}</p>
+                      <p key={i} className="text-[12px] font-black tracking-[0.1em] uppercase text-black">{line}</p>
                     ))}
                   </div>
 
