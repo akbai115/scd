@@ -21,7 +21,10 @@ import { supabase } from './src/lib/supabase';
 
 export type View = 'YZY' | 'THE_ARK' | 'STILL' | 'ADMIN' | 'FILES' | 'EVENTS' | 'LIVE' | 'SYSTEM_FAILURE';
 
+import { useSiteContent } from './src/hooks/useSiteContent';
+
 const App: React.FC = () => {
+  const { headerText, footerText, leftManifesto, centerManifesto, rightManifesto } = useSiteContent();
   const [view, setView] = useState<View>(() => {
     if (typeof window === 'undefined') return 'YZY';
     const p = window.location.pathname;
@@ -285,7 +288,7 @@ const App: React.FC = () => {
       >
         {/* PHASE 2 HEADER */}
         <div className="absolute top-4 left-0 right-0 flex justify-center z-[2000] pointer-events-none">
-          <h1 className="text-red-600 font-black text-xl tracking-[0.5em] uppercase animate-pulse">PHASE 2</h1>
+          <h1 className="text-red-600 font-black text-xl tracking-[0.5em] uppercase animate-pulse">{headerText}</h1>
         </div>
 
         {/* AUDIO: BULLY LOOP */}
@@ -350,7 +353,7 @@ const App: React.FC = () => {
               <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-black/80 animate-pulse">{bannerText}</span>
             </div>
 
-            <div className="absolute top-0 left-0 right-0 h-48 flex items-center justify-center z-[100]">
+            <div className="absolute top-0 left-0 right-0 h-48 flex items-center justify-center z-[100] pointer-events-none">
               <nav className="flex flex-row gap-12 md:gap-24 text-[10px] font-black tracking-[0.5em] uppercase pointer-events-auto items-center text-black">
                 {(['YZY', 'THE_ARK', 'STILL', 'FILES', 'EVENTS', 'LIVE'] as View[]).map((v) => (
                   <button
@@ -413,52 +416,13 @@ const App: React.FC = () => {
                     </div>
 
                     <div className="flex flex-col items-center gap-6 mt-8 opacity-90 mix-blend-difference pointer-events-none">
-                      <div className="flex flex-col gap-1">
-                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">GREED ALWAYS SHOWS UP FIRST</p>
-                      </div>
-
-                      <div className="flex flex-col gap-1">
-                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">LOADING HEAVY BEFORE ANYTHING IS BUILT</p>
-                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">THINKING SIZE MEANS POWER</p>
-                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">THINKING CONTROL COMES FROM GRABBING</p>
-                      </div>
-
-                      <div className="flex flex-col gap-1">
-                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">THIS IS NOT A RACE</p>
-                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">THIS IS NOT A CASHOUT</p>
-                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">THIS IS NOT A GAME FOR EARLY HOARDERS</p>
-                      </div>
-
-                      <div className="flex flex-col gap-1">
-                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">WEIGHT TOO EARLY WARPS THE STRUCTURE</p>
-                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">AND THE STRUCTURE REMEMBERS WHO PRESSED IT</p>
-                      </div>
-
-                      <div className="flex flex-col gap-1">
-                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">CONVICTION IS QUIET</p>
-                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">PATIENCE IS DISCIPLINE</p>
-                      </div>
-
-                      <div className="flex flex-col gap-1">
-                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">IF YOU’RE HERE TO EXTRACT</p>
-                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">YOU WILL BE SEEN</p>
-                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">AND YOU WILL BE IGNORED</p>
-                      </div>
-
-                      <div className="flex flex-col gap-1">
-                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">THIS IS ABOUT BALANCE</p>
-                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">ABOUT TIMING</p>
-                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">ABOUT RESPECT FOR THE BUILD</p>
-                      </div>
-
-                      <div className="flex flex-col gap-1">
-                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">GREED DOESN’T GET REWARDED</p>
-                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">ALIGNMENT DOES</p>
-                      </div>
+                      {centerManifesto.map((line, i) => (
+                        <p key={i} className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">{line}</p>
+                      ))}
                     </div>
-                  </div>
 
-                  <div className="absolute bottom-32 text-[10px] font-black tracking-[1.5em] text-black uppercase">JAN 2026</div>
+                    <div className="absolute bottom-32 text-[10px] font-black tracking-[1.5em] text-black uppercase">{footerText}</div>
+                  </div>
 
                   {/* BOTTOM LEFT CA LINK & SPOTIFY */}
                   <div className="absolute bottom-8 left-8 z-[100] pointer-events-auto flex flex-col items-start gap-4">
@@ -475,66 +439,26 @@ const App: React.FC = () => {
 
                   {/* RIGHT SIDE MANIFESTO */}
                   {/* RIGHT SIDE MANIFESTO - HEAVY/CARVED */}
-                  <div className="absolute right-8 md:right-16 top-1/2 -translate-y-1/2 flex flex-col items-end text-right gap-8 pointer-events-none z-10">
-                    <div className="flex flex-col gap-0">
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">THE ARK WAS NEVER ABOUT ESCAPE</p>
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">IT WAS ABOUT SELECTION</p>
-                    </div>
-
-                    <div className="flex flex-col gap-0">
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">THIS IS THE ONE</p>
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">DON’T DIVIDE</p>
-                    </div>
-
-                    <div className="flex flex-col gap-0">
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">NOT EVERYONE FITS</p>
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">NOT EVERYONE WANTS IT</p>
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">NOT EVERYONE SURVIVES</p>
-                    </div>
-
-                    <div className="flex flex-col gap-0">
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">THE FLOOD DOESN’T ANNOUNCE ITSELF</p>
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">THE ARK DOESN’T EXPLAIN</p>
-                    </div>
-
-                    <div className="flex flex-col gap-0">
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">THIS IS THE ONE</p>
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">DON’T DIVIDE</p>
-                    </div>
-
-                    <div className="flex flex-col gap-0">
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">THE ARK DOESN’T BEG</p>
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">IT WAITS <span className="text-[10px] opacity-100 font-mono">54F9DbbQqZJKQdweH8WnwBEa8MWVNhUUdP3NJFREpump</span></p>
-                    </div>
+                  {/* RIGHT SIDE MANIFESTO */}
+                  <div className="absolute right-8 md:right-16 top-1/2 -translate-y-1/2 flex flex-col items-end text-right gap-4 pointer-events-none z-10">
+                    {rightManifesto.map((line, i) => (
+                      <p key={i} className="text-[12px] font-black tracking-[0.1em] uppercase text-black">
+                        {line.includes('54F9') ? (
+                          <>
+                            {line.split('54F9')[0]}
+                            <span className="text-[10px] opacity-100 font-mono">54F9{line.split('54F9')[1]}</span>
+                          </>
+                        ) : line}
+                      </p>
+                    ))}
                   </div>
 
                   {/* LEFT SIDE MESSAGE */}
-                  <div className="absolute left-4 md:left-16 top-1/2 -translate-y-1/2 hidden md:flex flex-col items-start text-left gap-8 pointer-events-none z-10">
-                    <div className="flex flex-col gap-0">
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">BUNDLERS TRYING TO FARM THE COMMUNITY</p>
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">WON’T BE REWARDED</p>
-                    </div>
-
-                    <div className="flex flex-col gap-0">
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">NO SHORTCUTS</p>
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">NO EXTRACTION</p>
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">NO FREE RIDE</p>
-                    </div>
-
-                    <div className="flex flex-col gap-0">
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">THIS ISN’T A LIQUIDITY EVENT</p>
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">IT’S ALIGNMENT</p>
-                    </div>
-
-                    <div className="flex flex-col gap-0">
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">IF YOU’RE HERE TO TAKE</p>
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">YOU’LL BE IGNORED</p>
-                    </div>
-
-                    <div className="flex flex-col gap-0">
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">IF YOU’RE HERE TO BUILD</p>
-                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">YOU’LL BE SEEN</p>
-                    </div>
+                  {/* LEFT SIDE MESSAGE */}
+                  <div className="absolute left-4 md:left-16 top-1/2 -translate-y-1/2 hidden md:flex flex-col items-start text-left gap-4 pointer-events-none z-10">
+                    {leftManifesto.map((line, i) => (
+                      <p key={i} className="text-[12px] font-black tracking-[0.1em] uppercase text-black">{line}</p>
+                    ))}
                   </div>
                 </div>
               )}

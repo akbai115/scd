@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useSiteContent } from '../src/hooks/useSiteContent';
 
 export const LiveStream: React.FC = () => {
     const [activeTab, setActiveTab] = useState('HOME');
+    const { streamUrl, streamLive } = useSiteContent();
 
     const VIDEO_FEED = [
         { id: 1, title: 'VULTURES_LISTENING_EXP_01', views: '2.4M', time: 'LIVE NOW' },
@@ -46,14 +48,26 @@ export const LiveStream: React.FC = () => {
 
                     {/* FEATURED VIDEO */}
                     <div className="w-full aspect-video bg-white/5 border border-white/10 relative mb-12 group cursor-pointer overflow-hidden backdrop-blur-sm">
-                        <div className="absolute inset-0 flex items-center justify-center">
-                            <span className="times-bold text-xl tracking-[0.5em] uppercase opacity-20 animate-pulse">OFFLINE_FEED</span>
-                        </div>
-                        <div className="absolute top-4 right-4 flex items-center gap-2">
-                            <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-                            <span className="text-[9px] font-bold tracking-widest uppercase text-red-500/80">LIVE</span>
-                        </div>
-                        <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        {streamLive && streamUrl ? (
+                            <iframe
+                                src={streamUrl}
+                                className="absolute inset-0 w-full h-full"
+                                frameBorder="0"
+                                allow="autoplay; encrypted-media"
+                                allowFullScreen
+                            ></iframe>
+                        ) : (
+                            <>
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                    <span className="times-bold text-xl tracking-[0.5em] uppercase opacity-20 animate-pulse">OFFLINE_FEED</span>
+                                </div>
+                                <div className="absolute top-4 right-4 flex items-center gap-2">
+                                    <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
+                                    <span className="text-[9px] font-bold tracking-widest uppercase text-red-500/80">OFFLINE</span>
+                                </div>
+                            </>
+                        )}
+                        <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
