@@ -5,7 +5,7 @@ export const ArrivalBackground: React.FC = () => {
     const repeats = Array(20).fill('THE ARRIVAL');
 
     return (
-        <div className="absolute inset-0 pointer-events-none z-[5] overflow-hidden flex justify-center opacity-[0.03]">
+        <div className="absolute inset-0 pointer-events-none z-[5] overflow-hidden flex justify-center opacity-[0.15]">
             <div className="animate-scroll-down flex flex-col items-center gap-32">
                 {repeats.map((text, i) => (
                     <h1 key={i} className="text-4xl md:text-9xl font-black font-mono tracking-[1em] uppercase whitespace-nowrap text-black">
