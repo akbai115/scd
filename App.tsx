@@ -370,6 +370,39 @@ const App: React.FC = () => {
                   </div>
                   <h1 className="times-bold text-[12rem] md:text-[16rem] tracking-tighter leading-none select-none text-black -translate-y-32 md:-translate-y-48 uppercase mix-blend-normal opacity-100">ARK</h1>
                   <Vlinkjn />
+
+                  {/* CENTER MANIFESTO */}
+                  <div className="absolute top-[60%] flex flex-col items-center text-center gap-6 z-20 pointer-events-none mix-blend-difference">
+                    <div className="flex flex-col gap-1">
+                      <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">PHASE 1 WAS SIGNAL</p>
+                      <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">SEEING WHO FLINCHED</p>
+                      <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">WHO RUSHED TO LABEL</p>
+                      <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">WHO NEEDED EXPLANATIONS INSTEAD OF VISION</p>
+                    </div>
+
+                    <div className="w-1 h-8 bg-black/20" />
+
+                    <div className="flex flex-col gap-1">
+                      <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">PHASE 2 IS STRUCTURE</p>
+                    </div>
+
+                    <div className="flex flex-col gap-1">
+                      <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">NO MORE FRAGMENTS FOR SPECTATORS</p>
+                      <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">NO MORE DECODING FOR PEOPLE WHO DON’T BUILD</p>
+                    </div>
+
+                    <div className="flex flex-col gap-1">
+                      <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">THIS IS WHERE IDEAS STOP FLOATING</p>
+                      <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">AND START CARRYING WEIGHT</p>
+                    </div>
+
+                    <div className="mt-4 flex flex-col gap-1 opacity-60">
+                      <p className="text-[9px] md:text-[10px] font-mono tracking-[0.1em] uppercase text-black">IF YOU’RE STILL ASKING WHAT IT MEANS</p>
+                      <p className="text-[9px] md:text-[10px] font-mono tracking-[0.1em] uppercase text-black">YOU’RE NOT LATE</p>
+                      <p className="text-[9px] md:text-[10px] font-mono tracking-[0.1em] uppercase text-black">YOU’RE JUST NOT INSIDE YET</p>
+                    </div>
+                  </div>
+
                   <div className="absolute bottom-32 text-[10px] font-black tracking-[1.5em] text-black uppercase">JAN 2026</div>
 
                   {/* BOTTOM LEFT CA LINK */}
