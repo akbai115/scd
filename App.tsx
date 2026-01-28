@@ -425,8 +425,8 @@ const App: React.FC = () => {
               <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-white/80 animate-pulse">{bannerText}</span>
             </div>
 
-            <div className="absolute top-0 left-0 right-0 h-48 flex items-center justify-center z-[100] pointer-events-none">
-              <nav className="flex flex-row gap-12 md:gap-24 text-[10px] font-black tracking-[0.5em] uppercase pointer-events-auto items-center text-white">
+            <div className="absolute top-0 left-0 right-0 h-32 md:h-48 flex items-center justify-center z-[100] pointer-events-none overflow-x-auto">
+              <nav className="flex flex-row gap-4 md:gap-24 text-[8px] md:text-[10px] font-black tracking-[0.3em] md:tracking-[0.5em] uppercase pointer-events-auto items-center text-white px-4">
                 {(['YZY', 'THE_ARK', 'STILL', 'FILES', 'EVENTS', 'LIVE'] as View[]).map((v) => (
                   <button
                     key={v}
@@ -496,6 +496,13 @@ const App: React.FC = () => {
                         );
                       }
                     `}</style>
+
+                    {/* GRIP FIGURE - Behind the logo, appearing to grip it */}
+                    <img
+                      src="/grip.png"
+                      alt=""
+                      className="absolute top-1/2 left-1/2 translate-x-[10%] -translate-y-[30%] w-[10%] md:w-[6%] h-auto object-contain z-0 opacity-90"
+                    />
                   </div>
 
                   {/* MINIMALISTIC BOAT SVG */}
@@ -524,7 +531,7 @@ const App: React.FC = () => {
                   <div className="absolute top-[65%] md:top-[60%] flex flex-col items-center text-center gap-6 z-20 pointer-events-auto">
                     <div className="flex flex-col items-center gap-4">
                       <a
-                        href="https://twitter.com/intent/tweet?text=%24yzyark%2054F9DbbQqZJKQdweH8WnwBEa8MWVNhUUdP3NJFREpump"
+                        href="https://twitter.com/intent/tweet?text=%24YZARK%20ARRIVAL%2054F9DbbQqZJKQdweH8WnwBEa8MWVNhUUdP3NJFREpump"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 text-[10px] font-mono font-bold text-white hover:text-white/70 transition-colors uppercase tracking-widest group"
@@ -532,17 +539,17 @@ const App: React.FC = () => {
                         <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-white group-hover:text-white/70 transition-colors">
                           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                         </svg>
-                        POST $YZYARK
+                        POST $YZARK
                       </a>
                     </div>
 
                     <div className="flex flex-col items-center gap-6 mt-8 opacity-90 mix-blend-difference pointer-events-none">
                       {centerManifesto.map((line, i) => (
-                        <p key={i} className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-white">{line}</p>
+                        <p key={i} className="text-[8px] md:text-[11px] font-bold tracking-[0.1em] md:tracking-[0.2em] uppercase text-white text-center px-4">{line}</p>
                       ))}
                     </div>
 
-                    <div className="absolute bottom-32 text-[10px] font-black tracking-[1.5em] text-white uppercase">{footerText}</div>
+                    <div className="absolute bottom-24 md:bottom-32 text-[8px] md:text-[10px] font-black tracking-[0.5em] md:tracking-[1.5em] text-white uppercase">{footerText}</div>
                   </div>
 
                   {/* BOTTOM LEFT CA LINK & SPOTIFY */}
@@ -552,7 +559,7 @@ const App: React.FC = () => {
                       href="https://pump.fun/profile/yz0"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[10px] font-mono font-bold text-white/50 hover:text-white transition-colors uppercase tracking-widest"
+                      className="text-[7px] md:text-[10px] font-mono font-bold text-white/50 hover:text-white transition-colors uppercase tracking-widest break-all max-w-[200px] md:max-w-none"
                     >
                       CA: 54F9DbbQqZJKQdweH8WnwBEa8MWVNhUUdP3NJFREpump
                     </a>
@@ -563,7 +570,7 @@ const App: React.FC = () => {
                   {/* RIGHT SIDE MANIFESTO */}
                   <div className="absolute right-8 md:right-16 top-1/2 -translate-y-1/2 flex flex-col items-end text-right gap-4 pointer-events-none z-10">
                     {rightManifesto.map((line, i) => (
-                      <p key={i} className="text-[12px] font-black tracking-[0.1em] uppercase text-white">
+                      <p key={i} className="text-[8px] md:text-[12px] font-black tracking-[0.05em] md:tracking-[0.1em] uppercase text-white">
                         {line.includes('54F9') ? (
                           <>
                             {line.split('54F9')[0]}
@@ -587,7 +594,7 @@ const App: React.FC = () => {
 
               {view === 'STILL' && (
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-white transition-all duration-[3000ms] gap-6">
-                  <h2 className="times-bold text-4xl md:text-8xl tracking-[0.4em] opacity-60 uppercase blur-[0.5px]">IN A PERFECT WORLD</h2>
+                  <h2 className="times-bold text-2xl md:text-8xl tracking-[0.2em] md:tracking-[0.4em] opacity-60 uppercase blur-[0.5px] px-4 text-center">IN A PERFECT WORLD</h2>
                   <div className="text-center">
                     <span className="text-[11px] font-bold tracking-[1.5em] uppercase opacity-50">TBA</span>
                   </div>

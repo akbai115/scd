@@ -24,9 +24,9 @@ export const Notepad: React.FC = () => {
     return (
         <div
             onClick={() => setIsOpen(!isOpen)}
-            className={`fixed left-[10%] md:left-[calc(50%-15rem)] top-1/2 -translate-y-1/2 z-[5000] cursor-pointer transition-all duration-700 ease-in-out shadow-xl hover:scale-105 ${isOpen
-                ? 'w-64 h-80 bg-[#1a1a1a] rotate-1'
-                : 'w-12 h-12 bg-[#222222] -rotate-3 hover:rotate-0'
+            className={`fixed left-4 md:left-[calc(50%-15rem)] bottom-24 md:top-1/2 md:bottom-auto md:-translate-y-1/2 z-[5000] cursor-pointer transition-all duration-700 ease-in-out shadow-xl hover:scale-105 ${isOpen
+                ? 'w-56 md:w-64 h-72 md:h-80 bg-[#1a1a1a] rotate-1'
+                : 'w-14 h-14 md:w-12 md:h-12 bg-[#222222] -rotate-3 hover:rotate-0'
                 }`}
             style={{
                 // "Organic" border radius for a crumpled paper look
