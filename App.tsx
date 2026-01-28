@@ -377,7 +377,7 @@ const App: React.FC = () => {
                   <div className="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-[16rem] flex flex-col items-center">
                     {/* Subheader removed for silence */}
                   </div>
-                  <div className="flex flex-col items-center gap-3 -translate-y-24 md:-translate-y-48 z-30 mb-4">
+                  <div className="flex flex-col items-center gap-3 -translate-y-20 md:-translate-y-40 z-30">
                     <a
                       href="https://open.spotify.com/prerelease/4xFs0x8abwU3H9uNRPFRmE"
                       target="_blank"
