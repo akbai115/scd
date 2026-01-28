@@ -324,7 +324,7 @@ const App: React.FC = () => {
       {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
 
       <div
-        className={`relative w-full h-screen bg-[#F2F2F2] overflow-hidden select-none transition-all duration-2000 
+        className={`relative w-full h-screen bg-[#D4AF37] overflow-hidden select-none transition-all duration-2000 
           ${isGlitching ? 'grayscale contrast-[105%] blur-[12px] brightness-[0.95]' : ''}
           ${isShaking ? 'animate-shake' : ''}
           ${isInverted ? 'invert' : ''}
@@ -365,7 +365,7 @@ const App: React.FC = () => {
         ) : (
           <>
             <Canvas camera={{ position: [0, 0, 5], fov: 75 }} style={{ width: '100vw', height: '100vh', position: 'absolute', top: 0, left: 0 }} dpr={[1, typeof window !== 'undefined' && window.innerWidth < 768 ? 1 : 1.5]}>
-              <color attach="background" args={['#F2F2F2']} />
+              <color attach="background" args={['#D4AF37']} />
               <ambientLight intensity={0.2} />
               <pointLight position={[0, 0, 10]} intensity={2.0} />
               <FabricPlane
