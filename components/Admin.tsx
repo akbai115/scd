@@ -9,7 +9,99 @@ interface AdminProps {
   currentBanner: string;
 }
 
-const TABS = ['BROADCAST', 'CONTENT', 'STREAM'];
+const TABS = ['BROADCAST', 'CONTENT', 'STREAM', 'VISUALS'];
+
+interface VisualPanelProps {
+  onUpdate: (config: any) => void;
+}
+
+const VisualsPanel: React.FC<VisualPanelProps> = ({ onUpdate }) => {
+  const [bg, setBg] = useState('VIDEO');
+  const [features, setFeatures] = useState({
+    goldenKey: true,
+    crescentMoon: true,
+    crackOverlay: true,
+    digitalStatic: true,
+    floatingSubs: true,
+    notepad: true,
+    stadium: true,
+    arkLogo: true,
+  });
+  const [colors, setColors] = useState({
+    textColor: '#FFFFFF',
+    accentColor: '#FF0000',
+    backgroundColor: '#000000',
+  });
+
+  const handleUpdate = () => {
+    onUpdate({
+      activeBackground: bg,
+      visibleFeatures: features,
+      branding: colors
+    });
+  };
+
+  return (
+    <div className="flex flex-col gap-6 h-full overflow-y-auto pr-2 custom-scrollbar">
+      <div className="flex justify-between items-center">
+        <h3 className="text-[10px] uppercase opacity-50 tracking-widest">VISUAL_CONTROLLER_V1</h3>
+        <button onClick={handleUpdate} className="px-6 py-2 bg-blue-600 text-white font-bold text-[10px] tracking-widest uppercase hover:bg-blue-500">APPLY_VISUALS</button>
+      </div>
+
+      {/* BACKGROUND MODE */}
+      <div className="flex flex-col gap-3">
+        <label className="text-[9px] uppercase opacity-40">BACKGROUND_MODE</label>
+        <div className="flex gap-2">
+          {['VIDEO', 'CYMATICS', 'SOLID'].map(mode => (
+            <button
+              key={mode}
+              onClick={() => setBg(mode)}
+              className={`flex-1 py-3 text-[10px] font-bold border transition-all ${bg === mode ? 'bg-white text-black border-white' : 'border-white/20 hover:border-white'}`}
+            >
+              {mode}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* COLORS */}
+      <div className="flex flex-col gap-3">
+        <label className="text-[9px] uppercase opacity-40">SYSTEM_COLORS</label>
+        <div className="grid grid-cols-3 gap-4">
+          <div className="flex flex-col gap-1">
+            <span className="text-[8px] uppercase">TEXT</span>
+            <input type="color" value={colors.textColor} onChange={e => setColors({ ...colors, textColor: e.target.value })} className="w-full h-8 bg-transparent cursor-pointer" />
+          </div>
+          <div className="flex flex-col gap-1">
+            <span className="text-[8px] uppercase">ACCENT</span>
+            <input type="color" value={colors.accentColor} onChange={e => setColors({ ...colors, accentColor: e.target.value })} className="w-full h-8 bg-transparent cursor-pointer" />
+          </div>
+          <div className="flex flex-col gap-1">
+            <span className="text-[8px] uppercase">SOLID_BG</span>
+            <input type="color" value={colors.backgroundColor} onChange={e => setColors({ ...colors, backgroundColor: e.target.value })} className="w-full h-8 bg-transparent cursor-pointer" />
+          </div>
+        </div>
+      </div>
+
+      {/* FEATURES TOGGLE */}
+      <div className="flex flex-col gap-3">
+        <label className="text-[9px] uppercase opacity-40">COMPONENT_VISIBILITY</label>
+        <div className="grid grid-cols-2 gap-2">
+          {Object.entries(features).map(([key, enabled]) => (
+            <button
+              key={key}
+              onClick={() => setFeatures(prev => ({ ...prev, [key]: !enabled }))}
+              className={`p-3 text-left border flex justify-between items-center ${enabled ? 'border-green-500/50 bg-green-900/10' : 'border-white/10 opacity-50'}`}
+            >
+              <span className="text-[9px] uppercase font-bold">{key.replace(/([A-Z])/g, '_$1')}</span>
+              <div className={`w-2 h-2 rounded-full ${enabled ? 'bg-green-500' : 'bg-red-500'}`} />
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export const Admin: React.FC<AdminProps> = ({ onTransmit, onBannerUpdate, currentBanner }) => {
   const [activeTab, setActiveTab] = useState('BROADCAST');
@@ -245,6 +337,18 @@ export const Admin: React.FC<AdminProps> = ({ onTransmit, onBannerUpdate, curren
                   </div>
                 </div>
               </div>
+            )}
+
+            {activeTab === 'VISUALS' && (
+              <VisualsPanel
+                onUpdate={async (config) => {
+                  await supabase.from('transmissions').insert({
+                    message: JSON.stringify(config),
+                    type: 'SITE_CONFIG'
+                  });
+                  onTransmit('SITE_VISUALS_UPDATED');
+                }}
+              />
             )}
           </div>
 

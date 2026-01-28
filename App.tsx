@@ -88,6 +88,24 @@ const App: React.FC = () => {
   const [bannerText, setBannerText] = useState('TBA');
   const [isLoading, setIsLoading] = useState(true);
 
+  // GLOBAL VISUAL STATE (Synced via Supabase)
+  const [activeBackground, setActiveBackground] = useState<'VIDEO' | 'CYMATICS' | 'SOLID'>('VIDEO');
+  const [visibleFeatures, setVisibleFeatures] = useState({
+    goldenKey: true,
+    crescentMoon: true,
+    crackOverlay: true,
+    digitalStatic: true,
+    floatingSubs: true,
+    notepad: true,
+    stadium: true,
+    arkLogo: true,
+  });
+  const [branding, setBranding] = useState({
+    textColor: '#FFFFFF',
+    accentColor: '#FF0000', // Default red accent
+    backgroundColor: '#000000', // For SOLID mode
+  });
+
   // Admin Event States
   const [isShaking, setIsShaking] = useState(false);
   const [isInverted, setIsInverted] = useState(false);
@@ -98,17 +116,38 @@ const App: React.FC = () => {
 
   // SUPABASE REALTIME SUBSCRIPTION
   useEffect(() => {
-    // 1. Initial fetch for latest banner
+    // 1. Initial fetch for latest banner AND site config
     const fetchLatest = async () => {
-      const { data } = await supabase
+      // Fetch Banner
+      const { data: bannerData } = await supabase
         .from('transmissions')
         .select('*')
         .eq('type', 'BANNER_UPDATE')
         .order('created_at', { ascending: false })
         .limit(1);
 
-      if (data && data[0]) {
-        setBannerText(data[0].message);
+      if (bannerData && bannerData[0]) {
+        setBannerText(bannerData[0].message);
+      }
+
+      // Fetch Site Config
+      const { data: configData } = await supabase
+        .from('transmissions')
+        .select('message')
+        .eq('type', 'SITE_CONFIG')
+        .order('created_at', { ascending: false })
+        .limit(1)
+        .single();
+
+      if (configData && configData.message) {
+        try {
+          const config = JSON.parse(configData.message);
+          if (config.activeBackground) setActiveBackground(config.activeBackground);
+          if (config.visibleFeatures) setVisibleFeatures(prev => ({ ...prev, ...config.visibleFeatures }));
+          if (config.branding) setBranding(prev => ({ ...prev, ...config.branding }));
+        } catch (e) {
+          console.error("Failed to parse initial config", e);
+        }
       }
     };
     fetchLatest();
@@ -119,11 +158,48 @@ const App: React.FC = () => {
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'transmissions' }, (payload) => {
         const { message, type } = payload.new;
 
-        if (type === 'BANNER_UPDATE') {
+        if (type === 'SITE_CONFIG') {
+          try {
+            const config = JSON.parse(message);
+            if (config.activeBackground) setActiveBackground(config.activeBackground);
+            if (config.visibleFeatures) setVisibleFeatures(prev => ({ ...prev, ...config.visibleFeatures }));
+            if (config.branding) setBranding(prev => ({ ...prev, ...config.branding }));
+          } catch (e) {
+            console.error("Failed to parse config update", e);
+          }
+        }
+        else if (type === 'BANNER_UPDATE') {
           setBannerText(message);
         } else if (type === 'BROADCAST' || type === 'INJECTION') {
-          // Trigger the existing visual logic
-          onTransmissionRequest(message);
+          // Handle transient events
+          if (message === 'SEISMIC') {
+            setIsShaking(true);
+            setTimeout(() => setIsShaking(false), 500);
+          }
+          else if (message === 'FLASH') {
+            setIsFlash(true);
+            setTimeout(() => setIsFlash(false), 1500);
+          }
+          else if (message === 'INVERT') {
+            setIsInverted(prev => !prev);
+          }
+          else if (message === 'BLACKOUT') {
+            setIsBlackout(prev => !prev);
+          }
+          else if (message === 'GLITCH_STORM') {
+            setIsGlitching(true);
+            setTimeout(() => setIsGlitching(false), 3000);
+          }
+          else if (message === 'RED_WASH') {
+            setIsRedWash(prev => !prev);
+          }
+          else if (message === 'BLUR_WAVE') {
+            setIsBlurred(true);
+            setTimeout(() => setIsBlurred(false), 4000);
+          }
+          else {
+            onTransmissionRequest(message);
+          }
         }
       })
       .subscribe();
@@ -351,21 +427,27 @@ const App: React.FC = () => {
         onTouchEnd={handleEndInteraction}
       >
         {/* BACKGROUND VIDEO */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover z-[40] opacity-60"
-        >
-          <source src="/ARK.mp4" type="video/mp4" />
-        </video>
+        {/* BACKGROUND CONTROLLER */}
+        <div className="absolute inset-0 z-[30]">
+          {activeBackground === 'VIDEO' && (
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover opacity-60"
+            >
+              <source src="/ARK.mp4" type="video/mp4" />
+            </video>
+          )}
+          {activeBackground === 'CYMATICS' && <CymaticsBackground audioVolume={audioVolume} />}
+          {activeBackground === 'SOLID' && <div className="absolute inset-0 w-full h-full" style={{ backgroundColor: branding.backgroundColor }} />}
+        </div>
 
-        {/* CYMATICS ANIMATION - Above video, below content */}
-        <CymaticsBackground audioVolume={audioVolume} />
+        {/* PHASE 2 HEADER */}
         {/* PHASE 2 HEADER */}
         <div className="absolute top-4 left-0 right-0 flex justify-center z-[2000] pointer-events-none">
-          <h1 className="text-white font-black text-xl tracking-[0.5em] uppercase animate-pulse">{headerText}</h1>
+          <h1 className="text-white font-black text-xl tracking-[0.5em] uppercase animate-pulse" style={{ color: branding.textColor }}>{headerText}</h1>
         </div>
 
 
