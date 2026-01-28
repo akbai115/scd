@@ -343,10 +343,7 @@ const App: React.FC = () => {
           <h1 className="text-red-600 font-black text-xl tracking-[0.5em] uppercase animate-pulse">{headerText}</h1>
         </div>
 
-        {/* AUDIO: BULLY LOOP */}
-        <audio autoPlay loop hidden>
-          <source src="/bully.mp3" type="audio/mpeg" />
-        </audio>
+
         <div className="fixed inset-0 pointer-events-none z-[2000] opacity-[0.05] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
 
         <div className={`absolute inset-0 z-10 pointer-events-none bg-gradient-to-b from-[#F2F2F2]/30 via-transparent to-[#F2F2F2]/50 backdrop-blur-[4px] transition-opacity duration-[4000ms] ${isSynced ? 'opacity-100' : 'opacity-0'}`} />
