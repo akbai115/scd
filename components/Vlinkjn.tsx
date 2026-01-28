@@ -9,7 +9,7 @@ export const Vlinkjn: React.FC = () => {
                 loop
                 muted
                 playsInline
-                className="w-64 h-auto md:w-96 drop-shadow-2xl opacity-90 relative z-10"
+                className="hidden w-64 h-auto md:w-96 drop-shadow-2xl opacity-90 relative z-10"
             />
             <video
                 src="/flames32.mp4"

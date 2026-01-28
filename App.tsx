@@ -382,14 +382,7 @@ const App: React.FC = () => {
             {/* ARK LOGO - Always visible */}
             <ArkLogo />
 
-            {/* HOOD LOGO - TOP RIGHT */}
-            <div className="fixed top-8 right-8 z-[150] pointer-events-none opacity-80 hover:opacity-100 transition-opacity">
-              <img
-                src="/hood.png"
-                alt="Hood Logo"
-                className="w-16 h-auto drop-shadow-lg"
-              />
-            </div>
+
 
             {/* LEFT NOTEPAD */}
             <Notepad />
