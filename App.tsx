@@ -419,7 +419,53 @@ const App: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* LEFT SIDE MESSAGE REMOVED - "Refuses to explain" */}
+                  {/* LEFT SIDE MESSAGE */}
+                  <div className="absolute left-8 md:left-16 top-1/2 -translate-y-1/2 flex flex-col items-start text-left gap-8 pointer-events-none z-10">
+                    <div className="flex flex-col gap-0">
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">BECAUSE PEOPLE KEEP GRABBING RANDOM PIECES</p>
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">AND CALLING THEM THE WHOLE STORY</p>
+                    </div>
+
+                    <div className="flex flex-col gap-0">
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">THIS WAS NEVER CHAOS</p>
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">IT WAS A PATTERN</p>
+                    </div>
+
+                    <div className="flex flex-col gap-0">
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">I RELEASE FRAGMENTS ON PURPOSE</p>
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">PRESSURE TESTS</p>
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">SIGNAL CHECKS</p>
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">WHO LISTENS VS WHO REACTS</p>
+                    </div>
+
+                    <div className="flex flex-col gap-0">
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">THIS IS THE FINAL ARC</p>
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">NOT BECAUSE IT’S LOUD</p>
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">BUT BECAUSE IT’S PRECISE</p>
+                    </div>
+
+                    <div className="flex flex-col gap-0">
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">YOU DON’T GET THE FULL PICTURE BY SCREENSHOTTING MOMENTS</p>
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">YOU GET IT BY WATCHING HOW THEY CONNECT</p>
+                    </div>
+
+                    <div className="flex flex-col gap-0">
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">I WON’T GIVE CLARITY UNTIL THE COMMUNITY SHOWS IT CAN HOLD IT</p>
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">NOT HYPE</p>
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">NOT OUTRAGE</p>
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">UNDERSTANDING</p>
+                    </div>
+
+                    <div className="flex flex-col gap-0">
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">YOU DON’T RISE BY DEMANDING</p>
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">YOU RISE BY TUNING IN</p>
+                    </div>
+
+                    <div className="flex flex-col gap-0">
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">PATTERNS FIRST</p>
+                      <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">THEN ASCENT</p>
+                    </div>
+                  </div>
                 </div>
               )}
 
