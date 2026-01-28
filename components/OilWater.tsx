@@ -9,8 +9,8 @@ const OilMesh = () => {
     // Dark, heavy, undulating, with specular highlights
     const uniforms = useMemo(() => ({
         uTime: { value: 0 },
-        uColor: { value: new THREE.Color('#000000') },
-        uHighlight: { value: new THREE.Color('#333333') }, // Subtle grey reflection
+        uColor: { value: new THREE.Color('#050505') }, // Very dark grey, not pure black
+        uHighlight: { value: new THREE.Color('#AAAAAA') }, // Bright silvery highlight
     }), []);
 
     const vertexShader = `
@@ -55,15 +55,15 @@ const OilMesh = () => {
       vUv = uv;
       
       // Slow, heavy movement
-      float noise = snoise(vec2(uv.x * 3.0 + uTime * 0.1, uv.y * 3.0 + uTime * 0.15)); // Higher scale, slower time
+      float noise = snoise(vec2(uv.x * 2.0 + uTime * 0.1, uv.y * 2.0 + uTime * 0.15)); // Higher scale, slower time
       
       // Secondary layer for detail
-      noise += snoise(vec2(uv.x * 8.0 - uTime * 0.1, uv.y * 6.0 + uTime * 0.05)) * 0.3;
+      noise += snoise(vec2(uv.x * 6.0 - uTime * 0.1, uv.y * 4.0 + uTime * 0.05)) * 0.2;
 
       vElevation = noise;
 
       vec3 newPosition = position;
-      newPosition.z += noise * 0.5; // Height displacement
+      newPosition.z += noise * 0.8; // Height displacement
 
       gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);
     }
@@ -82,13 +82,13 @@ const OilMesh = () => {
       // Shininess / Reflection based on elevation (fake lighting)
       // High elevation = catch light
       // We create a sharp band for "oil" look
-      float shine = smoothstep(0.2, 0.25, vElevation) - smoothstep(0.25, 0.4, vElevation);
+      float shine = smoothstep(0.3, 0.35, vElevation) - smoothstep(0.35, 0.6, vElevation);
       
       // Add moving highlights
-      color = mix(color, uHighlight, shine * 0.5);
+      color = mix(color, uHighlight, shine * 0.8); // Stronger highlight
       
       // subtle gradient for depth
-      color = mix(color, vec3(0.05), vElevation * 0.2);
+      color = mix(color, vec3(0.02), vElevation * 0.1);
 
       gl_FragColor = vec4(color, 1.0);
     }
@@ -102,7 +102,7 @@ const OilMesh = () => {
     });
 
     return (
-        <mesh ref={mesh} rotation={[-Math.PI / 2.5, 0, 0]} position={[0, -2, 0]}>
+        <mesh ref={mesh} rotation={[-Math.PI / 2.2, 0, 0]} position={[0, -1, 0]}> {/* Tilted up slightly more */}
             <planeGeometry args={[20, 10, 128, 128]} />
             <shaderMaterial
                 vertexShader={vertexShader}
@@ -116,10 +116,11 @@ const OilMesh = () => {
 
 export const OilWater: React.FC = () => {
     return (
-        <div className="absolute bottom-0 left-0 right-0 h-[40vh] w-full z-0 opacity-80 pointer-events-none fade-in duration-2000">
-            <Canvas camera={{ position: [0, 1, 3], fov: 50 }}>
-                <ambientLight intensity={0.2} />
-                <pointLight position={[0, 5, 5]} intensity={1.0} color="#ffffff" />
+        <div className="absolute bottom-0 left-0 right-0 h-[40vh] w-full z-0 opacity-100 pointer-events-none fade-in duration-2000">
+            <Canvas camera={{ position: [0, 2, 4], fov: 45 }}>
+                <ambientLight intensity={0.5} />
+                <pointLight position={[0, 5, 5]} intensity={3.0} color="#ffffff" />
+                <pointLight position={[-5, 2, 5]} intensity={2.0} color="#ccccff" /> {/* Side cooler light */}
                 <OilMesh />
             </Canvas>
             {/* Vignette fade to black at top of water */}
