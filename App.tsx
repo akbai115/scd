@@ -14,7 +14,7 @@ import { FileManager } from './components/FileManager';
 import { IntroAnimation } from './components/IntroAnimation';
 import { Notepad } from './components/Notepad';
 import { HimFigure } from './components/HimFigure';
-import { StormOverlay } from './components/StormOverlay';
+// import { StormOverlay } from './components/StormOverlay';
 import { Events } from './Events';
 import { LiveStream } from './components/LiveStream';
 import { supabase } from './src/lib/supabase';
@@ -390,8 +390,8 @@ const App: React.FC = () => {
             {/* HIM FIGURE */}
             <HimFigure />
 
-            {/* STORM OVERLAY */}
-            <StormOverlay />
+            {/* STORM OVERLAY - DISABLED */}
+            {/* <StormOverlay /> */}
 
             {/* GLOBAL BANNER - UNDER NAVBAR */}
             {/* GLOBAL BANNER - UNDER NAVBAR */}
