@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
-export const Stadium: React.FC = () => {
+export const Stadium: React.FC<JSX.IntrinsicElements['group']> = (props) => {
     const group = useRef<THREE.Group>(null);
 
     // Slow rotation animation
@@ -20,7 +20,7 @@ export const Stadium: React.FC = () => {
     });
 
     return (
-        <group ref={group} position={[0, -3.5, -2]} rotation={[0.4, 0, 0]} scale={[1.8, 1.8, 1.8]}>
+        <group ref={group} {...props}>
             {/* ARENA FLOOR */}
             <mesh rotation={[-Math.PI / 2, 0, 0]} material={whiteMaterial}>
                 <circleGeometry args={[2.5, 64]} />
