@@ -31,7 +31,7 @@ export const AngelsPlayer: React.FC = () => {
     return (
         <button
             onClick={togglePlay}
-            className="fixed left-1/2 -translate-x-1/2 bottom-24 md:bottom-32 z-[5000] flex items-center gap-4 group pointer-events-auto hover:scale-105 transition-all backdrop-blur-md bg-black/40 border border-white/10 rounded-full pr-6 py-2"
+            className="fixed left-1/2 -translate-x-1/2 bottom-24 md:bottom-32 z-[5000] flex items-center gap-4 group pointer-events-auto hover:scale-105 transition-all backdrop-blur-md bg-black/40 border border-white/10 rounded-full pr-6 py-2 max-w-[90vw] whitespace-nowrap scale-90 md:scale-100 origin-bottom"
         >
             <div className={`w-8 h-8 flex items-center justify-center border border-white/20 rounded-full group-hover:border-red-600 transition-colors ${isPlaying ? 'bg-red-600/10' : 'bg-black/20'}`}>
                 {isPlaying ? (
