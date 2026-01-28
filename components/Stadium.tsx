@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
-export const Stadium: React.FC<JSX.IntrinsicElements['group']> = (props) => {
+export const Stadium: React.FC<React.ComponentProps<'group'>> = (props) => {
     const group = useRef<THREE.Group>(null);
 
     // Slow rotation animation
@@ -12,11 +12,22 @@ export const Stadium: React.FC<JSX.IntrinsicElements['group']> = (props) => {
         }
     });
 
-    const whiteMaterial = new THREE.MeshStandardMaterial({
+    // High quality "瓷" (Porcelain) look
+    const whiteMaterial = new THREE.MeshPhysicalMaterial({
         color: '#ffffff',
-        roughness: 0.2,
+        roughness: 0.15,
         metalness: 0.1,
+        clearcoat: 1.0,
+        clearcoatRoughness: 0.1,
         side: THREE.DoubleSide
+    });
+
+    // Emissive material for lights (subtle glow)
+    const lightMaterial = new THREE.MeshStandardMaterial({
+        color: '#ffffff',
+        emissive: '#ffffff',
+        emissiveIntensity: 2.0,
+        toneMapped: false
     });
 
     return (
@@ -46,9 +57,9 @@ export const Stadium: React.FC<JSX.IntrinsicElements['group']> = (props) => {
                 <mesh
                     key={i}
                     position={[Math.sin(i * Math.PI / 4) * 5.2, 1.5, Math.cos(i * Math.PI / 4) * 5.2]}
-                    material={whiteMaterial}
+                    material={lightMaterial}
                 >
-                    <boxGeometry args={[0.1, 1, 0.1]} />
+                    <boxGeometry args={[0.05, 0.8, 0.05]} />
                 </mesh>
             ))}
         </group>
