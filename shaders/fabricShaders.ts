@@ -140,7 +140,7 @@ export const fragmentShader = `
   }
 
   void main() {
-    vec3 goldColor = vec3(0.831, 0.686, 0.216); // GOLD #D4AF37
+    vec3 goldColor = vec3(0.922, 0.914, 0.894); // BONE WHITE #EBE9E4
     
     if(uIsHolyHour) {
         goldColor = mix(goldColor, vec3(0.1, 0.1, 0.1), 0.05);
