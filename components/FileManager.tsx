@@ -7,6 +7,7 @@ interface FileItem {
     type: string;
     dateCreated: string;
     content?: string;
+    audioUrl?: string;
 }
 
 interface Directory {
@@ -80,7 +81,9 @@ const fileSystem: Directory[] = [
     {
         id: 'audio',
         name: 'AUDIO_BANKS',
-        items: []
+        items: [
+            { id: '4', name: 'ANGELS.MP3', size: '3.4MB', type: 'AUDIO', dateCreated: '01-01-2099', audioUrl: '/ANGELS.mp3' }
+        ]
     },
     {
         id: 'manifestos',
@@ -100,7 +103,7 @@ export const FileManager: React.FC = () => {
     const objectCount = currentFiles.length;
 
     const handleFileDoubleClick = (file: FileItem) => {
-        if (file.content) {
+        if (file.content || file.audioUrl) {
             setOpenedFile(file);
         }
     };
@@ -201,10 +204,23 @@ export const FileManager: React.FC = () => {
                                     CLOSE_STREAM
                                 </button>
                             </div>
-                            <div className="flex-1 p-8 md:p-16 overflow-y-auto">
-                                <pre className="whitespace-pre-wrap font-mono text-sm md:text-base leading-loose opacity-80 uppercase selection:bg-white selection:text-black">
-                                    {openedFile.content}
-                                </pre>
+                            <div className="flex-1 p-8 md:p-16 overflow-y-auto flex flex-col items-center justify-center">
+                                {openedFile.audioUrl ? (
+                                    <div className="w-full max-w-md flex flex-col gap-8">
+                                        <div className="w-full h-32 border border-white/20 flex items-center justify-center bg-white/5 animate-pulse">
+                                            <span className="text-4xl font-bold tracking-widest opacity-50">AUDIO_WAVE</span>
+                                        </div>
+                                        <audio controls className="w-full invert opacity-80" src={openedFile.audioUrl} autoPlay />
+                                        <div className="flex justify-between text-[10px] font-mono opacity-50 uppercase tracking-widest">
+                                            <span>Start_Stream</span>
+                                            <span>End_Stream</span>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <pre className="whitespace-pre-wrap font-mono text-sm md:text-base leading-loose opacity-80 uppercase selection:bg-white selection:text-black w-full">
+                                        {openedFile.content}
+                                    </pre>
+                                )}
                             </div>
                         </div>
                     )}
