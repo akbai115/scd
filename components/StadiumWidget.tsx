@@ -12,7 +12,7 @@ export const StadiumWidget: React.FC = () => {
             {/* TRIGGER BUTTON */}
             <button
                 onClick={() => setIsOpen(true)}
-                className="fixed bottom-8 right-8 z-[100] text-[10px] font-mono font-bold tracking-[0.2em] uppercase text-black/50 hover:text-black hover:tracking-[0.3em] transition-all duration-300 mix-blend-difference"
+                className="fixed bottom-8 right-8 z-[5000] text-[10px] font-mono font-bold tracking-[0.2em] uppercase text-white hover:text-white/50 hover:tracking-[0.3em] transition-all duration-300 mix-blend-difference cursor-pointer"
             >
                 stadium.
             </button>
