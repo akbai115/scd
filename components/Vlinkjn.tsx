@@ -4,7 +4,7 @@ export const Vlinkjn: React.FC = () => {
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[1000] pointer-events-none"
         >
             <video
-                src="/flames.mp4"
+                src="/flames32.mp4"
                 autoPlay
                 loop
                 muted
