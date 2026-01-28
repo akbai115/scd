@@ -14,6 +14,7 @@ import { FileManager } from './components/FileManager';
 import { IntroAnimation } from './components/IntroAnimation';
 import { Notepad } from './components/Notepad';
 import { HimFigure } from './components/HimFigure';
+import { StormOverlay } from './components/StormOverlay';
 import { Events } from './Events';
 import { LiveStream } from './components/LiveStream';
 import { supabase } from './src/lib/supabase';
@@ -331,6 +332,9 @@ const App: React.FC = () => {
             {/* HIM FIGURE */}
             <HimFigure />
 
+            {/* STORM OVERLAY */}
+            <StormOverlay />
+
             {/* GLOBAL BANNER - UNDER NAVBAR */}
             {/* GLOBAL BANNER - UNDER NAVBAR */}
             <div className="absolute top-40 left-0 right-0 flex justify-center z-[100] pointer-events-none">
@@ -364,7 +368,7 @@ const App: React.FC = () => {
                   <div className="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-[16rem] flex flex-col items-center">
                     {/* Subheader removed for silence */}
                   </div>
-                  <h1 className="times-bold text-[18rem] md:text-[24rem] tracking-tighter leading-none select-none text-black mt-32 uppercase mix-blend-normal opacity-100">ARK</h1>
+                  <h1 className="times-bold text-[12rem] md:text-[16rem] tracking-tighter leading-none select-none text-black -translate-y-32 md:-translate-y-48 uppercase mix-blend-normal opacity-100">ARK</h1>
                   <Vlinkjn />
                   <div className="absolute bottom-32 text-[10px] font-black tracking-[1.5em] text-black uppercase">JAN 2026</div>
 
