@@ -380,12 +380,12 @@ const App: React.FC = () => {
                   <img
                     src="/by.png"
                     alt="ARK"
-                    className="w-[12rem] md:w-[24rem] h-auto -translate-y-32 md:-translate-y-48 object-contain select-none opacity-100"
+                    className="w-[10rem] md:w-[24rem] h-auto -translate-y-24 md:-translate-y-48 object-contain select-none opacity-100"
                   />
                   <Vlinkjn />
 
                   {/* CENTER MANIFESTO */}
-                  <div className="absolute top-[60%] flex flex-col items-center text-center gap-6 z-20 pointer-events-none mix-blend-difference">
+                  <div className="absolute top-[65%] md:top-[60%] flex flex-col items-center text-center gap-6 z-20 pointer-events-none mix-blend-difference">
                     <div className="flex flex-col gap-1">
                       <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">PHASE 1 WAS SIGNAL</p>
                       <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">SEEING WHO FLINCHED</p>
@@ -477,7 +477,7 @@ const App: React.FC = () => {
                   </div>
 
                   {/* LEFT SIDE MESSAGE */}
-                  <div className="absolute left-8 md:left-16 top-1/2 -translate-y-1/2 flex flex-col items-start text-left gap-8 pointer-events-none z-10">
+                  <div className="absolute left-4 md:left-16 top-1/2 -translate-y-1/2 hidden md:flex flex-col items-start text-left gap-8 pointer-events-none z-10">
                     <div className="flex flex-col gap-0">
                       <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">BECAUSE PEOPLE KEEP GRABBING RANDOM PIECES</p>
                       <p className="text-[12px] font-black tracking-[0.1em] uppercase text-black">AND CALLING THEM THE WHOLE STORY</p>

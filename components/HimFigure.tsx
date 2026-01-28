@@ -51,7 +51,7 @@ export const HimFigure: React.FC = () => {
                 <img
                     src="/him.png"
                     alt="Him"
-                    className="w-48 md:w-80 h-auto drop-shadow-[0_10px_30px_rgba(0,0,0,0.2)]"
+                    className="w-32 md:w-80 h-auto drop-shadow-[0_10px_30px_rgba(0,0,0,0.2)]"
                 />
             </div>
         </div>
