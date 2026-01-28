@@ -23,6 +23,7 @@ export type View = 'YZY' | 'THE_ARK' | 'STILL' | 'ADMIN' | 'FILES' | 'EVENTS' | 
 
 import { useSiteContent } from './src/hooks/useSiteContent';
 import { AngelsPlayer } from './components/AngelsPlayer';
+import { ArrivalBackground } from './components/ArrivalBackground';
 
 const App: React.FC = () => {
   const { headerText, footerText, leftManifesto, centerManifesto, rightManifesto } = useSiteContent();
@@ -374,6 +375,9 @@ const App: React.FC = () => {
                 onClick={onFabricClick}
               />
             </Canvas>
+
+            {/* ARRIVAL BACKGROUND SCROLL */}
+            <ArrivalBackground />
 
             {/* ARK LOGO - Always visible */}
             <ArkLogo />
