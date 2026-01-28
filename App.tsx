@@ -513,7 +513,6 @@ const App: React.FC = () => {
                     ))}
                   </div>
 
-                  <AngelsPlayer />
                 </div>
               )}
 
@@ -591,6 +590,7 @@ const App: React.FC = () => {
         }
       `}</style>
       </div>
+      {view === 'YZY' && <AngelsPlayer />}
     </>
   );
 };
