@@ -25,7 +25,7 @@ export const Sovereignty: React.FC = () => {
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-auto transition-all duration-1000 animate-in fade-in zoom-in-95">
       {/* Geometric Logo: Hull + Diamond */}
-      <div className="relative group flex flex-col items-center justify-center gap-10 hover:gap-12 transition-all duration-700 cursor-none">
+      <div className="relative group flex flex-col items-center justify-center gap-10 hover:gap-12 transition-all duration-700">
         {/* Diamond Star */}
         <div className="w-12 h-12 bg-white rotate-45 transition-transform duration-700 group-hover:rotate-[225deg] group-hover:scale-110 shadow-2xl" />
 
