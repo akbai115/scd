@@ -22,7 +22,7 @@ import { supabase } from './src/lib/supabase';
 export type View = 'YZY' | 'THE_ARK' | 'STILL' | 'ADMIN' | 'FILES' | 'EVENTS' | 'LIVE' | 'SYSTEM_FAILURE';
 
 import { useSiteContent } from './src/hooks/useSiteContent';
-import { AngelsPlayer } from './components/AngelsPlayer';
+
 import { ArrivalBackground } from './components/ArrivalBackground';
 
 const App: React.FC = () => {
@@ -589,7 +589,7 @@ const App: React.FC = () => {
         }
       `}</style>
       </div>
-      {view === 'YZY' && <AngelsPlayer />}
+
     </>
   );
 };
