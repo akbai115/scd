@@ -411,6 +411,51 @@ const App: React.FC = () => {
                         POST $YZYARK
                       </a>
                     </div>
+
+                    <div className="flex flex-col items-center gap-6 mt-8 opacity-90 mix-blend-difference pointer-events-none">
+                      <div className="flex flex-col gap-1">
+                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">GREED ALWAYS SHOWS UP FIRST</p>
+                      </div>
+
+                      <div className="flex flex-col gap-1">
+                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">LOADING HEAVY BEFORE ANYTHING IS BUILT</p>
+                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">THINKING SIZE MEANS POWER</p>
+                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">THINKING CONTROL COMES FROM GRABBING</p>
+                      </div>
+
+                      <div className="flex flex-col gap-1">
+                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">THIS IS NOT A RACE</p>
+                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">THIS IS NOT A CASHOUT</p>
+                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">THIS IS NOT A GAME FOR EARLY HOARDERS</p>
+                      </div>
+
+                      <div className="flex flex-col gap-1">
+                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">WEIGHT TOO EARLY WARPS THE STRUCTURE</p>
+                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">AND THE STRUCTURE REMEMBERS WHO PRESSED IT</p>
+                      </div>
+
+                      <div className="flex flex-col gap-1">
+                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">CONVICTION IS QUIET</p>
+                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">PATIENCE IS DISCIPLINE</p>
+                      </div>
+
+                      <div className="flex flex-col gap-1">
+                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">IF YOU’RE HERE TO EXTRACT</p>
+                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">YOU WILL BE SEEN</p>
+                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">AND YOU WILL BE IGNORED</p>
+                      </div>
+
+                      <div className="flex flex-col gap-1">
+                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">THIS IS ABOUT BALANCE</p>
+                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">ABOUT TIMING</p>
+                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">ABOUT RESPECT FOR THE BUILD</p>
+                      </div>
+
+                      <div className="flex flex-col gap-1">
+                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">GREED DOESN’T GET REWARDED</p>
+                        <p className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-black">ALIGNMENT DOES</p>
+                      </div>
+                    </div>
                   </div>
 
                   <div className="absolute bottom-32 text-[10px] font-black tracking-[1.5em] text-black uppercase">JAN 2026</div>
