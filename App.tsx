@@ -28,7 +28,11 @@ import { DigitalStaticOverlay } from './components/DigitalStaticOverlay';
 import { CymaticsBackground } from './components/CymaticsBackground';
 
 import { StadiumWidget } from './components/StadiumWidget';
-import { RisingArm } from './components/RisingArm';
+// import { RisingArm } from './components/RisingArm'; - REMOVED
+import { CrackOverlay } from './components/CrackOverlay';
+import { FloatingSubs } from './components/FloatingSubs';
+import { CrescentMoon } from './components/CrescentMoon';
+import { FlamesOverlay } from './components/FlamesOverlay';
 
 
 const App: React.FC = () => {
@@ -417,8 +421,20 @@ const App: React.FC = () => {
             {/* HIM FIGURE */}
             <HimFigure />
 
-            {/* RISING HAND/ARM */}
-            <RisingArm />
+            {/* RISING HAND/ARM - REMOVED */}
+            {/* <RisingArm /> */}
+
+            {/* CRACK OVERLAY - Splits screen in half */}
+            <CrackOverlay />
+
+            {/* FLOATING SUBS */}
+            <FloatingSubs />
+
+            {/* CRESCENT MOON - Top left corner */}
+            <CrescentMoon />
+
+            {/* FLAMES OVERLAY - Bottom of screen */}
+            <FlamesOverlay />
 
             {/* STORM OVERLAY - PAUSED */}
             {/* <StormOverlay /> */}

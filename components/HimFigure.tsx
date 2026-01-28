@@ -40,7 +40,7 @@ export const HimFigure: React.FC = () => {
 
                 {/* Image */}
                 <img
-                    src="/t2.png"
+                    src="/tri8.png"
                     alt="Him"
                     className="w-32 md:w-80 h-auto drop-shadow-[0_10px_30px_rgba(0,0,0,0.2)]"
                 />
