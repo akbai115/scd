@@ -31,11 +31,21 @@ export const AngelsPlayer: React.FC = () => {
     return (
         <button
             onClick={togglePlay}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 mt-48 md:mt-72 z-[2000] flex items-center gap-3 group pointer-events-auto"
+            className="fixed left-8 bottom-32 z-[2000] flex items-center gap-4 group pointer-events-auto hover:scale-105 transition-transform"
         >
-            <div className={`w-2 h-2 rounded-full ${isPlaying ? 'bg-red-600 animate-pulse' : 'bg-black/50'}`} />
+            <div className={`w-8 h-8 flex items-center justify-center border border-white/20 rounded-full group-hover:border-red-600 transition-colors ${isPlaying ? 'bg-red-600/10' : 'bg-black/20'}`}>
+                {isPlaying ? (
+                    <svg viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3 text-red-600">
+                        <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
+                    </svg>
+                ) : (
+                    <svg viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3 text-white">
+                        <path d="M8 5v14l11-7z" />
+                    </svg>
+                )}
+            </div>
             <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-white drop-shadow-md group-hover:text-red-600 transition-colors">
-                {isPlaying ? 'PAUSE_ANGELS' : 'PLAY_ANGELS'}
+                {isPlaying ? 'PAUSE ANGELS' : 'PLAY ANGELS'}
             </span>
         </button>
     );
