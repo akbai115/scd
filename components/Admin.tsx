@@ -167,13 +167,13 @@ export const Admin: React.FC<AdminProps> = ({ onTransmit, onBannerUpdate, curren
                 <div className="flex flex-col gap-4">
                   <label className="text-[10px] uppercase opacity-50 tracking-widest">LIVE_EVENTS</label>
                   <div className="grid grid-cols-2 gap-4">
-                    <button onClick={() => broadcastEvent('SEISMIC')} className="py-3 border border-white/20 hover:bg-white hover:text-black text-[10px] font-bold uppercase tracking-widest">SEISMIC_SHAKE</button>
-                    <button onClick={() => broadcastEvent('FLASH')} className="py-3 border border-white/20 hover:bg-white hover:text-black text-[10px] font-bold uppercase tracking-widest">FLASH_BANG</button>
-                    <button onClick={() => broadcastEvent('INVERT')} className="py-3 border border-white/20 hover:bg-white hover:text-black text-[10px] font-bold uppercase tracking-widest">TOGGLE_INVERT</button>
-                    <button onClick={() => broadcastEvent('BLACKOUT')} className="py-3 border border-white/20 hover:bg-black hover:text-white bg-white text-black text-[10px] font-bold uppercase tracking-widest">TOGGLE_BLACKOUT</button>
-                    <button onClick={() => broadcastEvent('GLITCH_STORM')} className="py-3 border border-white/20 hover:bg-white hover:text-black text-[10px] font-bold uppercase tracking-widest">GLITCH_STORM</button>
-                    <button onClick={() => broadcastEvent('RED_WASH')} className="py-3 border border-red-600 text-red-600 hover:bg-red-600 hover:text-white text-[10px] font-bold uppercase tracking-widest">RED_ALERT</button>
-                    <button onClick={() => broadcastEvent('BLUR_WAVE')} className="py-3 border border-white/20 hover:bg-white hover:text-black text-[10px] font-bold uppercase tracking-widest">BLUR_WAVE</button>
+                    <button onClick={() => broadcastEvent('SEISMIC')} className="py-4 md:py-3 border border-white/20 hover:bg-white hover:text-black text-[10px] font-bold uppercase tracking-widest active:bg-white active:text-black transition-colors">SEISMIC_SHAKE</button>
+                    <button onClick={() => broadcastEvent('FLASH')} className="py-4 md:py-3 border border-white/20 hover:bg-white hover:text-black text-[10px] font-bold uppercase tracking-widest active:bg-white active:text-black transition-colors">FLASH_BANG</button>
+                    <button onClick={() => broadcastEvent('INVERT')} className="py-4 md:py-3 border border-white/20 hover:bg-white hover:text-black text-[10px] font-bold uppercase tracking-widest active:bg-white active:text-black transition-colors">TOGGLE_INVERT</button>
+                    <button onClick={() => broadcastEvent('BLACKOUT')} className="py-4 md:py-3 border border-white/20 hover:bg-black hover:text-white bg-white text-black text-[10px] font-bold uppercase tracking-widest active:bg-black active:text-white transition-colors">TOGGLE_BLACKOUT</button>
+                    <button onClick={() => broadcastEvent('GLITCH_STORM')} className="py-4 md:py-3 border border-white/20 hover:bg-white hover:text-black text-[10px] font-bold uppercase tracking-widest active:bg-white active:text-black transition-colors">GLITCH_STORM</button>
+                    <button onClick={() => broadcastEvent('RED_WASH')} className="py-4 md:py-3 border border-red-600 text-red-600 hover:bg-red-600 hover:text-white text-[10px] font-bold uppercase tracking-widest active:bg-red-600 active:text-white transition-colors">RED_ALERT</button>
+                    <button onClick={() => broadcastEvent('BLUR_WAVE')} className="py-4 md:py-3 border border-white/20 hover:bg-white hover:text-black text-[10px] font-bold uppercase tracking-widest active:bg-white active:text-black transition-colors">BLUR_WAVE</button>
                   </div>
                 </div>
               </div>

@@ -573,17 +573,17 @@ const App: React.FC = () => {
         .tracking-tightest { letter-spacing: -0.15em; }
         
         @keyframes shake {
-          0% { transform: translate(1px, 1px) rotate(0deg); }
-          10% { transform: translate(-1px, -2px) rotate(-1deg); }
-          20% { transform: translate(-3px, 0px) rotate(1deg); }
-          30% { transform: translate(3px, 2px) rotate(0deg); }
-          40% { transform: translate(1px, -1px) rotate(1deg); }
-          50% { transform: translate(-1px, 2px) rotate(-1deg); }
-          60% { transform: translate(-3px, 1px) rotate(0deg); }
-          70% { transform: translate(3px, 1px) rotate(-1deg); }
-          80% { transform: translate(-1px, -1px) rotate(1deg); }
-          90% { transform: translate(1px, 2px) rotate(0deg); }
-          100% { transform: translate(1px, -2px) rotate(-1deg); }
+          0% { transform: translate(2px, 2px) rotate(0deg); }
+          10% { transform: translate(-2px, -4px) rotate(-1deg); }
+          20% { transform: translate(-6px, 0px) rotate(2deg); }
+          30% { transform: translate(6px, 4px) rotate(0deg); }
+          40% { transform: translate(2px, -2px) rotate(2deg); }
+          50% { transform: translate(-2px, 4px) rotate(-1deg); }
+          60% { transform: translate(-6px, 2px) rotate(0deg); }
+          70% { transform: translate(6px, 2px) rotate(-1deg); }
+          80% { transform: translate(-2px, -2px) rotate(2deg); }
+          90% { transform: translate(2px, 4px) rotate(0deg); }
+          100% { transform: translate(2px, -4px) rotate(-1deg); }
         }
         .animate-shake {
           animation: shake 0.5s;
