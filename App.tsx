@@ -413,10 +413,10 @@ const App: React.FC = () => {
                     key={v}
                     onClick={(e) => { e.stopPropagation(); setView(v); setClickTrigger(t => t + 1); }}
                     className={`transition-all duration-300 hover:scale-105 active:scale-95 border-b-2 border-transparent hover:border-black
-                      ${(v === 'EVENTS' || v === 'LIVE') ? 'text-red-600 hover:text-red-500' : 'hover:text-black'}
-                      ${v === 'THE_ARK' ? 'animate-pulse' : ''}
+                      ${(v === 'EVENTS' || v === 'LIVE' || v === 'THE_ARK') ? 'text-red-600 hover:text-red-500' : 'hover:text-black'}
+                      ${v === 'THE_ARK' ? 'animate-pulse drop-shadow-[0_0_8px_rgba(220,38,38,0.8)]' : ''}
                       ${view === v
-                        ? (v === 'EVENTS' || v === 'LIVE' ? 'opacity-100 border-red-600' : 'opacity-100 border-black')
+                        ? (v === 'EVENTS' || v === 'LIVE' || v === 'THE_ARK' ? 'opacity-100 border-red-600' : 'opacity-100 border-black')
                         : 'opacity-40 hover:opacity-100'
                       }`}
                   >
