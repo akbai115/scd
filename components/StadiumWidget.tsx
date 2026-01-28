@@ -37,15 +37,15 @@ export const StadiumWidget: React.FC = () => {
 
                         {/* 3D CANVAS */}
                         <div className="w-full h-full cursor-move">
-                            <Canvas camera={{ position: [0, 2, 7], fov: 35 }} gl={{ toneMappingExposure: 1.2 }}>
+                            <Canvas camera={{ position: [0, 2, 7], fov: 35 }} gl={{ toneMappingExposure: 0.7 }}>
                                 {/* Lighting & Environment */}
-                                <ambientLight intensity={0.5} />
-                                <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} castShadow />
+                                <ambientLight intensity={0.2} />
+                                <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={0.5} castShadow />
                                 <Environment preset="studio" />
 
                                 {/* Post Processing */}
                                 <EffectComposer>
-                                    <Bloom luminanceThreshold={0.9} intensity={1.2} radius={0.6} />
+                                    <Bloom luminanceThreshold={1.2} intensity={0.4} radius={0.8} />
                                     <Noise opacity={0.05} />
                                 </EffectComposer>
 
