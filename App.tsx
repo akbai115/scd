@@ -80,6 +80,8 @@ const App: React.FC = () => {
   const [isInverted, setIsInverted] = useState(false);
   const [isBlackout, setIsBlackout] = useState(false);
   const [isFlash, setIsFlash] = useState(false);
+  const [isRedWash, setIsRedWash] = useState(false);
+  const [isBlurred, setIsBlurred] = useState(false);
 
   // SUPABASE REALTIME SUBSCRIPTION
   useEffect(() => {
@@ -269,6 +271,21 @@ const App: React.FC = () => {
       setTimeout(() => setIsFlash(false), 200);
       return;
     }
+    if (message === 'GLITCH_STORM') {
+      setIsGlitching(true);
+      setTransmissionTrigger(prev => prev + 20);
+      setTimeout(() => setIsGlitching(false), 5000); // Longer glitch
+      return;
+    }
+    if (message === 'RED_WASH') {
+      setIsRedWash(prev => !prev);
+      return;
+    }
+    if (message === 'BLUR_WAVE') {
+      setIsBlurred(true);
+      setTimeout(() => setIsBlurred(false), 3000);
+      return;
+    }
 
     setActiveTransmission(null);
     setActiveImage(null);
@@ -312,6 +329,8 @@ const App: React.FC = () => {
           ${isInverted ? 'invert' : ''}
           ${isBlackout ? 'brightness-0' : ''}
           ${isFlash ? 'brightness-[2.0] bg-white' : ''}
+          ${isRedWash ? 'bg-red-600 mix-blend-multiply' : ''}
+          ${isBlurred ? 'blur-[8px]' : ''}
         `}
         onMouseDown={handleStartInteraction}
         onMouseUp={handleEndInteraction}
