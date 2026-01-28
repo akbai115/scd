@@ -28,6 +28,7 @@ import { DigitalStaticOverlay } from './components/DigitalStaticOverlay';
 import { CymaticsBackground } from './components/CymaticsBackground';
 
 import { StadiumWidget } from './components/StadiumWidget';
+import { RisingArm } from './components/RisingArm';
 
 
 const App: React.FC = () => {
@@ -415,6 +416,9 @@ const App: React.FC = () => {
 
             {/* HIM FIGURE */}
             <HimFigure />
+
+            {/* RISING HAND/ARM */}
+            <RisingArm />
 
             {/* STORM OVERLAY - PAUSED */}
             {/* <StormOverlay /> */}
