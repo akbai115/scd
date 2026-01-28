@@ -22,6 +22,7 @@ import { supabase } from './src/lib/supabase';
 export type View = 'YZY' | 'THE_ARK' | 'STILL' | 'ADMIN' | 'FILES' | 'EVENTS' | 'LIVE' | 'SYSTEM_FAILURE';
 
 import { useSiteContent } from './src/hooks/useSiteContent';
+import { AngelsPlayer } from './components/AngelsPlayer';
 
 const App: React.FC = () => {
   const { headerText, footerText, leftManifesto, centerManifesto, rightManifesto } = useSiteContent();
@@ -511,6 +512,8 @@ const App: React.FC = () => {
                       <p key={i} className="text-[12px] font-black tracking-[0.1em] uppercase text-black">{line}</p>
                     ))}
                   </div>
+
+                  <AngelsPlayer />
                 </div>
               )}
 
