@@ -140,14 +140,14 @@ export const fragmentShader = `
   }
 
   void main() {
-    vec3 boneWhite = vec3(0.95, 0.95, 0.95); 
+    vec3 goldColor = vec3(0.831, 0.686, 0.216); // GOLD #D4AF37
     
     if(uIsHolyHour) {
-        boneWhite = mix(boneWhite, vec3(0.1, 0.1, 0.1), 0.05);
+        goldColor = mix(goldColor, vec3(0.1, 0.1, 0.1), 0.05);
     }
     
     if(uIsAdmin) {
-        boneWhite = mix(boneWhite, vec3(0.8, 0.4, 0.4), 0.01);
+        goldColor = mix(goldColor, vec3(0.8, 0.4, 0.4), 0.01);
     }
 
     float weave = canvasWeave(vUv);
@@ -164,7 +164,7 @@ export const fragmentShader = `
     float lightAbsorption = mix(0.95, 1.0, textileDetail);
     lightIntensity *= lightAbsorption;
 
-    vec3 finalColor = mix(boneWhite, darkFigure, translucency * 0.4);
+    vec3 finalColor = mix(goldColor, darkFigure, translucency * 0.4);
     vec3 objectDetail = vec3(0.05, 0.05, 0.05); 
     finalColor = mix(finalColor, objectDetail, moldOpacity * 0.1);
 
