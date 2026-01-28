@@ -383,6 +383,9 @@ const App: React.FC = () => {
             {/* ARRIVAL BACKGROUND SCROLL */}
             <ArrivalBackground />
 
+            {/* DIGITAL STATIC OVERLAY - Digital Feed Aesthetics */}
+            <DigitalStaticOverlay />
+
             {/* ARK LOGO - Always visible */}
             <ArkLogo />
 
