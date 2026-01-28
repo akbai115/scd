@@ -434,11 +434,9 @@ const App: React.FC = () => {
                     {/* Subheader removed for silence */}
                   </div>
 
-                  <img
-                    src="/by.png"
-                    alt="ARK"
-                    className="w-[10rem] md:w-[24rem] h-auto -translate-y-24 md:-translate-y-48 object-contain select-none opacity-100 invert"
-                  />
+                  <h1 className="times-bold text-6xl md:text-9xl tracking-tighter uppercase text-black -translate-y-24 md:-translate-y-48 mix-blend-difference z-[100] pointer-events-none">
+                    THE ARK
+                  </h1>
                   <Vlinkjn />
 
                   {/* LINKS REPLACING MANIFESTO */}
