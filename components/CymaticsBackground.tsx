@@ -237,7 +237,62 @@ export const CymaticsBackground: React.FC<CymaticsBackgroundProps> = ({ audioVol
                     animation: center-pulse 4s ease-in-out infinite;
                     transform-origin: 400px 400px;
                 }
+
+                @keyframes spin-slow {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
+                }
+                .animate-spin-slow {
+                    animation: spin-slow 4s linear infinite;
+                }
             `}</style>
+
+            {/* VINYL & SPOTLIGHT CONTAINER */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center z-[60] pointer-events-none">
+
+                {/* SPOTLIGHT BEAM */}
+                <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[200px] h-[150vh] bg-gradient-to-b from-white/30 via-white/5 to-transparent blur-3xl"
+                    style={{ transform: 'rotate(-15deg)', pointerEvents: 'none' }}>
+                </div>
+
+                {/* 3D VINYL */}
+                <div className="relative group">
+                    <div className="w-[300px] h-[300px] rounded-full bg-black shadow-2xl flex items-center justify-center animate-spin-slow border-4 border-[#111] relative overflow-hidden">
+                        {/* Vinyl Grooves - multiple rings */}
+                        {Array.from({ length: 12 }).map((_, i) => (
+                            <div key={i} className="absolute rounded-full border border-neutral-800 opacity-40"
+                                style={{
+                                    inset: `${(i + 1) * 8}px`,
+                                    borderWidth: '1px'
+                                }}
+                            />
+                        ))}
+
+                        {/* Vinyl Reflection sheen */}
+                        <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent opacity-30 rounded-full"></div>
+
+                        {/* Label */}
+                        <div className="absolute w-[100px] h-[100px] bg-red-700 rounded-full flex items-center justify-center shadow-inner border-2 border-red-900">
+                            <div className="text-[10px] text-center font-bold text-[#EBE9E4] tracking-widest leading-none">
+                                FROM ME<br />TO YOU
+                            </div>
+                            <div className="absolute w-3 h-3 bg-black rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* TEXT BELOW */}
+                <div className="mt-6 text-center z-10">
+                    <h3 className="text-[#EBE9E4] text-lg font-bold tracking-[0.3em] uppercase drop-shadow-lg">
+                        A GIFT FROM THE ARK
+                    </h3>
+                </div>
+
+                {/* AUDIO */}
+                <audio autoPlay loop className="hidden">
+                    <source src="/fromME2U.mp3" type="audio/mpeg" />
+                </audio>
+            </div>
         </div>
     );
 };

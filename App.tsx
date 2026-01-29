@@ -750,11 +750,11 @@ const App: React.FC = () => {
 
 
             {/* HUM AUDIO - replaces procedural AudioEngine */}
-            {isStarted && (
+            {/* isStarted && (
               <audio autoPlay loop preload="auto" style={{ display: 'none' }}>
                 <source src="/humnew.wav" type="audio/wav" />
               </audio>
-            )}
+            ) */}
 
             {/* AUDIO ENGINE - DISABLED, replaced by humnew.wav */}
             {/* <AudioEngine
