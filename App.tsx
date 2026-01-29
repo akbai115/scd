@@ -470,7 +470,7 @@ const App: React.FC = () => {
           </div>
         ) : (
           <>
-            <Canvas camera={{ position: [0, 0, 5], fov: 75 }} style={{ width: '100vw', height: '100vh', position: 'absolute', top: 0, left: 0, zIndex: 10 }} dpr={[1, typeof window !== 'undefined' && window.innerWidth < 768 ? 1 : 1.5]}>
+            <Canvas camera={{ position: [0, 0, 5], fov: 75 }} style={{ width: '100vw', height: '100vh', position: 'absolute', top: 0, left: 0, zIndex: 10 }} dpr={[1, 1.5]}>
               {/* <color attach="background" args={['#FFFFFF']} /> REPLACED BY VIDEO */}
               <ambientLight intensity={0.2} />
               <pointLight position={[0, 0, 10]} intensity={2.0} />
@@ -488,7 +488,7 @@ const App: React.FC = () => {
             <Canvas
               camera={{ position: [0, 0, 5], fov: 75 }}
               style={{ width: '100vw', height: '100vh', position: 'absolute', top: 0, left: 0, zIndex: 50, pointerEvents: 'none' }}
-              dpr={[1, typeof window !== 'undefined' && window.innerWidth < 768 ? 1 : 1.5]}
+              dpr={[1, 1.5]}
               gl={{ alpha: true }}
             >
               <ambientLight intensity={0.8} />

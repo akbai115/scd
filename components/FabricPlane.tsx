@@ -13,9 +13,9 @@ interface FabricPlaneProps {
   onClick: () => void;
 }
 
-export const FabricPlane: React.FC<FabricPlaneProps> = ({ 
-  onVelocityChange, 
-  audioVolume, 
+export const FabricPlane: React.FC<FabricPlaneProps> = ({
+  onVelocityChange,
+  audioVolume,
   activeView,
   isHolyHour,
   isSpamming,
@@ -23,7 +23,7 @@ export const FabricPlane: React.FC<FabricPlaneProps> = ({
 }) => {
   const meshRef = useRef<THREE.Mesh>(null);
   const { mouse, size, viewport } = useThree();
-  
+
   const lastMousePos = useRef<[number, number]>([0, 0]);
   const impulseRef = useRef(0);
 
@@ -48,7 +48,7 @@ export const FabricPlane: React.FC<FabricPlaneProps> = ({
     uniforms.uIsHolyHour.value = isHolyHour;
     uniforms.uIsSpamming.value = isSpamming;
     uniforms.uIsAdmin.value = activeView === 'ADMIN';
-    
+
     const targetStillness = activeView === 'STILL' ? 1.0 : 0.0;
     uniforms.uStillness.value = THREE.MathUtils.lerp(uniforms.uStillness.value, targetStillness, 0.05);
 
@@ -57,28 +57,28 @@ export const FabricPlane: React.FC<FabricPlaneProps> = ({
 
     // FIGURE AI: Dampen completely if still
     if (activeView === 'STILL') {
-       uniforms.uGhostPos.value.x = THREE.MathUtils.lerp(uniforms.uGhostPos.value.x, 0, 0.01);
-       uniforms.uGhostPos.value.y = THREE.MathUtils.lerp(uniforms.uGhostPos.value.y, 0, 0.01);
-       uniforms.uGhostPos.value.z = -5.0; // Hide it deep
+      uniforms.uGhostPos.value.x = THREE.MathUtils.lerp(uniforms.uGhostPos.value.x, 0, 0.01);
+      uniforms.uGhostPos.value.y = THREE.MathUtils.lerp(uniforms.uGhostPos.value.y, 0, 0.01);
+      uniforms.uGhostPos.value.z = -5.0; // Hide it deep
     } else if (isSpamming) {
-       uniforms.uGhostPos.value.x = THREE.MathUtils.lerp(uniforms.uGhostPos.value.x, 0, 0.05);
-       uniforms.uGhostPos.value.y = THREE.MathUtils.lerp(uniforms.uGhostPos.value.y, 0, 0.05);
-       uniforms.uGhostPos.value.z = 1.5; 
+      uniforms.uGhostPos.value.x = THREE.MathUtils.lerp(uniforms.uGhostPos.value.x, 0, 0.05);
+      uniforms.uGhostPos.value.y = THREE.MathUtils.lerp(uniforms.uGhostPos.value.y, 0, 0.05);
+      uniforms.uGhostPos.value.z = 1.5;
     } else if (activeView === 'ADMIN') {
-       const targetX = viewport.width * 0.35;
-       uniforms.uGhostPos.value.x = THREE.MathUtils.lerp(uniforms.uGhostPos.value.x, targetX, 0.02);
-       uniforms.uGhostPos.value.y = THREE.MathUtils.lerp(uniforms.uGhostPos.value.y, 0, 0.02);
-       uniforms.uGhostPos.value.z = 0.5; 
+      const targetX = viewport.width * 0.35;
+      uniforms.uGhostPos.value.x = THREE.MathUtils.lerp(uniforms.uGhostPos.value.x, targetX, 0.02);
+      uniforms.uGhostPos.value.y = THREE.MathUtils.lerp(uniforms.uGhostPos.value.y, 0, 0.02);
+      uniforms.uGhostPos.value.z = 0.5;
     } else {
-       uniforms.uGhostPos.value.x = Math.sin(clock.getElapsedTime() * 0.15) * 2.5;
-       uniforms.uGhostPos.value.y = Math.cos(clock.getElapsedTime() * 0.1) * 1.5;
-       uniforms.uGhostPos.value.z = -1.5;
+      uniforms.uGhostPos.value.x = Math.sin(clock.getElapsedTime() * 0.15) * 2.5;
+      uniforms.uGhostPos.value.y = Math.cos(clock.getElapsedTime() * 0.1) * 1.5;
+      uniforms.uGhostPos.value.z = -1.5;
     }
 
     const targetX = (mouse.x * viewport.width) / 2.5;
     const targetY = (mouse.y * viewport.height) / 2.5;
 
-    uniforms.uMouse.value.x = THREE.MathUtils.lerp(uniforms.uMouse.value.x, targetX, 0.03); 
+    uniforms.uMouse.value.x = THREE.MathUtils.lerp(uniforms.uMouse.value.x, targetX, 0.03);
     uniforms.uMouse.value.y = THREE.MathUtils.lerp(uniforms.uMouse.value.y, targetY, 0.03);
 
     const dx = targetX - lastMousePos.current[0];
@@ -99,13 +99,13 @@ export const FabricPlane: React.FC<FabricPlaneProps> = ({
   };
 
   return (
-    <mesh 
-      ref={meshRef} 
+    <mesh
+      ref={meshRef}
       onPointerDown={handleClick}
       scale={[1, 1, 1]}
       position={[0, 0, 0]}
     >
-      <planeGeometry args={[22, 12, 256, 256]} />
+      <planeGeometry args={[22, 12, 128, 128]} />
       <shaderMaterial
         vertexShader={vertexShader}
         fragmentShader={fragmentShader}
